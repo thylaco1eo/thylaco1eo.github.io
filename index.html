@@ -216,6 +216,132 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/04/nltk-python3接口变更/" itemprop="url">
+                  nltk python3接口变更
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-04T21:54:37+08:00" content="2016-06-04">
+              2016-06-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Nltk/" itemprop="url" rel="index">
+                    <span itemprop="name">Nltk</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/04/nltk-python3接口变更/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/04/nltk-python3接口变更/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>翻译自Nltk官方Wiki，原文链接<a href="https://github.com/nltk/nltk/wiki/Porting-your-code-to-NLTK-3.0">点击</a></p>
+<p>Nltk在python3的版本中更改了部分接口，并且现在Nltk要求所有的输入文件为unicode格式，并且也将只返回unicode格式的文件。之前有的类需要以bytestrings编码，现在你需要检查你的程序，因为bytestrings编码现在可能导致错误。</p>
+<h4 id="接口的改变："><a href="#接口的改变：" class="headerlink" title="接口的改变："></a>接口的改变：</h4><ul>
+<li><code>grammar</code>:<code>ContextFreeGrammar</code>-&gt;<code>CFG</code>,<code>WeightGrammar</code>-&gt;<code>PCFG</code>,<br><code>StatisticalDependencyGrammar</code>-&gt;<code>ProbabilisticDependencyGrammar</code>,<br><code>WeightedProduction</code>-&gt;<code>ProbailisticProduction</code>  </li>
+<li><code>draw.tree</code>:<code>TreeSegmentWidget.node()</code>-&gt;<code>TreeSegmentWidget.label()</code>,<br><code>TreeSegmentWidget.set_node()</code>-&gt;<code>TreeSegmentWidget.set_label()</code></li>
+<li>parsers:<code>nbset_parse()</code>-&gt;<code>parse()</code></li>
+<li><code>ccg.parse.chart</code>:<code>EdgeI.next()</code>-&gt;<code>EdgeI.nextsym</code></li>
+<li>Chunk parser:<code>top_node</code>-&gt;<code>root_label</code>,<code>chunk_node</code>-&gt;<code>chunk_label</code></li>
+<li>WordNet特性现在转变为方法，比如：<code>Synset.definition</code>-&gt;<code>Synset.definition()</code></li>
+<li>sem.relextract:<code>mk_pairs()</code>-&gt;<code>_tree2semi_rel()</code>,<code>mk_reldicts()</code>-&gt;<code>semi_rel2reldict()</code>,<br><code>show_clause()</code>-&gt;<code>clause()</code>,<code>show_raw_rtuple()</code>-&gt;<code>rtuple()</code>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/06/04/nltk-python3接口变更/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/28/hello-world/" itemprop="url">
                   Hello World
                 </a>
@@ -340,13 +466,27 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
 
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>

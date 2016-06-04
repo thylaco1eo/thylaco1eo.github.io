@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="nltk,python3," />
 
 
 
@@ -57,19 +57,25 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="翻译自Nltk官方Wiki，原文链接点击
+Nltk在python3的版本中更改了部分接口，并且现在Nltk要求所有的输入文件为unicode格式，并且也将只返回unicode格式的文件。之前有的类需要以bytestrings编码，现在你需要检查你的程序，因为bytestrings编码现在可能导致错误。
+接口的改变：
+grammar:ContextFreeGrammar-&amp;gt;CFG,Weight">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://thylaco1eo.github.io/2016/05/28/hello-world/index.html">
+<meta property="og:title" content="nltk python3接口变更">
+<meta property="og:url" content="https://thylaco1eo.github.io/2016/06/04/nltk-python3接口变更/index.html">
 <meta property="og:site_name" content="thylaco1eo site">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2016-03-21T06:31:38.474Z">
+<meta property="og:description" content="翻译自Nltk官方Wiki，原文链接点击
+Nltk在python3的版本中更改了部分接口，并且现在Nltk要求所有的输入文件为unicode格式，并且也将只返回unicode格式的文件。之前有的类需要以bytestrings编码，现在你需要检查你的程序，因为bytestrings编码现在可能导致错误。
+接口的改变：
+grammar:ContextFreeGrammar-&amp;gt;CFG,Weight">
+<meta property="og:updated_time" content="2016-06-04T16:43:44.762Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="nltk python3接口变更">
+<meta name="twitter:description" content="翻译自Nltk官方Wiki，原文链接点击
+Nltk在python3的版本中更改了部分接口，并且现在Nltk要求所有的输入文件为unicode格式，并且也将只返回unicode格式的文件。之前有的类需要以bytestrings编码，现在你需要检查你的程序，因为bytestrings编码现在可能导致错误。
+接口的改变：
+grammar:ContextFreeGrammar-&amp;gt;CFG,Weight">
 
 
 
@@ -87,7 +93,7 @@ Quick">
   };
 </script>
 
-  <title> Hello World | thylaco1eo site </title>
+  <title> nltk python3接口变更 | thylaco1eo site </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -217,7 +223,7 @@ Quick">
             
             
               
-                Hello World
+                nltk python3接口变更
               
             
           </h1>
@@ -229,19 +235,38 @@ Quick">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-28T22:21:27+08:00" content="2016-05-28">
-              2016-05-28
+            <time itemprop="dateCreated" datetime="2016-06-04T21:54:37+08:00" content="2016-06-04">
+              2016-06-04
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Nltk/" itemprop="url" rel="index">
+                    <span itemprop="name">Nltk</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/28/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/28/hello-world/" itemprop="commentsCount"></span>
+                <a href="/2016/06/04/nltk-python3接口变更/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/04/nltk-python3接口变更/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -263,15 +288,89 @@ Quick">
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <p>翻译自Nltk官方Wiki，原文链接<a href="https://github.com/nltk/nltk/wiki/Porting-your-code-to-NLTK-3.0" target="_blank" rel="external">点击</a></p>
+<p>Nltk在python3的版本中更改了部分接口，并且现在Nltk要求所有的输入文件为unicode格式，并且也将只返回unicode格式的文件。之前有的类需要以bytestrings编码，现在你需要检查你的程序，因为bytestrings编码现在可能导致错误。</p>
+<h4 id="接口的改变："><a href="#接口的改变：" class="headerlink" title="接口的改变："></a>接口的改变：</h4><ul>
+<li><code>grammar</code>:<code>ContextFreeGrammar</code>-&gt;<code>CFG</code>,<code>WeightGrammar</code>-&gt;<code>PCFG</code>,<br><code>StatisticalDependencyGrammar</code>-&gt;<code>ProbabilisticDependencyGrammar</code>,<br><code>WeightedProduction</code>-&gt;<code>ProbailisticProduction</code>  </li>
+<li><code>draw.tree</code>:<code>TreeSegmentWidget.node()</code>-&gt;<code>TreeSegmentWidget.label()</code>,<br><code>TreeSegmentWidget.set_node()</code>-&gt;<code>TreeSegmentWidget.set_label()</code></li>
+<li>parsers:<code>nbset_parse()</code>-&gt;<code>parse()</code></li>
+<li><code>ccg.parse.chart</code>:<code>EdgeI.next()</code>-&gt;<code>EdgeI.nextsym</code></li>
+<li>Chunk parser:<code>top_node</code>-&gt;<code>root_label</code>,<code>chunk_node</code>-&gt;<code>chunk_label</code></li>
+<li>WordNet特性现在转变为方法，比如：<code>Synset.definition</code>-&gt;<code>Synset.definition()</code></li>
+<li>sem.relextract:<code>mk_pairs()</code>-&gt;<code>_tree2semi_rel()</code>,<code>mk_reldicts()</code>-&gt;<code>semi_rel2reldict()</code>,<br><code>show_clause()</code>-&gt;<code>clause()</code>,<code>show_raw_rtuple()</code>-&gt;<code>rtuple()</code><a id="more"></a></li>
+<li><code>corpusname.tagged_words(simplify_tags=True)</code>-&gt;<code>corpusname.tagged_words(tagset=&#39;universal&#39;)</code></li>
+<li><code>util.clean_html()</code>-&gt;<code>BeautifulSoup.get_text()</code>。<code>clean_html()</code>已经被取消，建议安装使用BeautifulSoup或者其他html解析器。</li>
+<li><code>util.ibigrams()</code>-&gt;<code>util.bigrams()</code></li>
+<li><code>util.ingrams()</code>-&gt;<code>util.ngrams()</code></li>
+<li><code>util.itrigrams()</code>-&gt;<code>util.trigrams()</code></li>
+<li><code>metrics.windowdiff</code>-&gt;<code>metrics.segmentation.windowdiff()</code>,<code>metrics.windowdiff.demo()</code>已经被移除。</li>
+<li><code>parse.generate2</code>已经被重写并合并到<code>parse.generate</code>。</li>
+</ul>
+<h4 id="通过字符串创建对象："><a href="#通过字符串创建对象：" class="headerlink" title="通过字符串创建对象："></a>通过字符串创建对象：</h4><ul>
+<li>很多对象现在支持<code>fromstring</code>函数。</li>
+<li><code>tree.Tree.parse()</code>-&gt;<code>tree.Tree.fromstring()</code></li>
+<li><code>tree.Tree()</code>-&gt;<code>tree.Tree.fromstring()</code></li>
+<li><code>chunk.RegexpChunkRule.parse()</code>-&gt;<code>chunkRegexpChunkRule.fromstring()</code></li>
+<li><code>grammar.parse_cfg()</code>-&gt;<code>CFG.fromstring()</code>(其他种类的grammar也同样适用)</li>
+<li><code>sem.LogicParser.parse(0)</code>-&gt; <code>sem.Expression.fromstring()</code></li>
+<li><code>sem.DreParser.parse()</code>-&gt;<code>sem.DrtExpression.fromstring()</code></li>
+<li><code>sem.parse_valuation()</code>-&gt;<code>sem.Valuation.fromstring()</code></li>
+<li><code>sem.parse_type()</code>-&gt;<code>sem.Type.fromstring()</code></li>
+</ul>
+<h4 id="其他项目上的操作："><a href="#其他项目上的操作：" class="headerlink" title="其他项目上的操作："></a>其他项目上的操作：</h4><ul>
+<li><code>tokenize.batch_tokenize()</code>-&gt;<code>tokenize.tokenize_sents()</code></li>
+<li><code>tag.batch_tag()</code>-&gt;<code>tag.tag_sents()</code></li>
+<li><code>parse.batch_parse()</code>-&gt;<code>parse.parse_sents()</code></li>
+<li><code>classify.batch_classify()</code>-&gt;<code>classify.classify_many()</code></li>
+<li><code>sem.batch_interpret()</code>-&gt;<code>sem.interpret_sents()</code></li>
+<li><code>sem.batch_evaluate()</code>-&gt;<code>sem.evaluate_sents()</code></li>
+<li><code>chunk.batch_ne_chunk()</code>-&gt;<code>chunk.ne_chunk_sents()</code></li>
+</ul>
+<h4 id="probability-FreqDist中的调整："><a href="#probability-FreqDist中的调整：" class="headerlink" title="probability.FreqDist中的调整："></a><code>probability.FreqDist</code>中的调整：</h4><ul>
+<li><code>fdist.keys()</code>-&gt;<code>sorted(fidst)</code></li>
+<li><code>fdits.inc(x)</code>-&gt;<code>fdist[x]+=1</code></li>
+<li><code>fdist.samples()</code>-&gt;<code>sorted(fdits.keys())</code></li>
+<li><code>fdist.Nr(r)</code>-&gt;<code>fdist.Nr()[r]</code></li>
+<li><code>fdist.Nr_nonzero()</code>-&gt;<code>fdist.Nr().items()</code></li>
+<li><code>cfdist.conditions()</code>-&gt;<code>sorted(cfdist.conditions())</code></li>
+</ul>
+<h4 id="分词算法调整"><a href="#分词算法调整" class="headerlink" title="分词算法调整;"></a>分词算法调整;</h4><ul>
+<li><code>adjust_case()</code>,<code>cons()</code>,<code>cvc()</code>,<code>doublec()</code>,<code>m()</code>,<code>step1ab()</code>,<code>step1c()</code>,<code>step2()</code>,<code>step3()</code>,<code>step4()</code>,<code>step5()</code>,<code>vowelinstem()</code>变为私有的。</li>
+<li>移除<code>ends()</code>,<code>r()</code>,<code>setto()</code></li>
+</ul>
+<h4 id="移除的模块，类和函数："><a href="#移除的模块，类和函数：" class="headerlink" title="移除的模块，类和函数："></a>移除的模块，类和函数：</h4><ul>
+<li><code>classify.svm</code>已经被移除，需要支持向量机(SVMs)的分类请使用<code>classify.scikitlearn</code>或者直接使用<code>scikit-learn</code>，参见 <a href="https://github.com/nltk/nltk/issues/450" target="_blank" rel="external">https://github.com/nltk/nltk/issues/450</a></li>
+<li><code>probability.GoodTuringProbDist</code>已经被移除。参见 <a href="https://github.com/nltk/nltk/issues/381。" target="_blank" rel="external">https://github.com/nltk/nltk/issues/381。</a></li>
+<li><code>HiddenMarkovModelTaggerTransformI</code>及其所包含的类被移除。参见 <a href="https://github.com/nltk/nltk/issues/374" target="_blank" rel="external">https://github.com/nltk/nltk/issues/374</a></li>
+<li><code>classify.maxent</code>不再支持<code>scipy.maxentropy</code>所支持的算法。参见 <a href="https://github.com/nltk/nltk/issues/321" target="_blank" rel="external">https://github.com/nltk/nltk/issues/321</a></li>
+<li><code>misc.babelfish</code>已经被移除。参见 <a href="https://github.com/nltk/nltk/issues/265" target="_blank" rel="external">https://github.com/nltk/nltk/issues/265</a></li>
+<li><code>sourcedstring</code>已经被移除。参见 <a href="https://github.com/nltk/nltk/issues/322" target="_blank" rel="external">https://github.com/nltk/nltk/issues/322</a></li>
+<li><code>yamltags</code>已经被移除。现在更推荐使用JSON。参见 <a href="https://github.com/nltk/nltk/issues/540" target="_blank" rel="external">https://github.com/nltk/nltk/issues/540</a></li>
+<li><code>mallet</code>已经被移除，包括<code>tag.crf</code>模块。参见 <a href="https://github.com/nltk/nltk/issues/104" target="_blank" rel="external">https://github.com/nltk/nltk/issues/104</a></li>
+<li><code>tag.simplify</code>已经被移除。参见 <a href="https://github.com/nltk/nltk/issues/483" target="_blank" rel="external">https://github.com/nltk/nltk/issues/483</a></li>
+<li><code>corpus.reader.wordnet._lcs_by_depth</code>被移除。参见 <a href="https://github.com/nltk/nltk/issues/422" target="_blank" rel="external">https://github.com/nltk/nltk/issues/422</a></li>
+</ul>
+<h4 id="其他的调整："><a href="#其他的调整：" class="headerlink" title="其他的调整："></a>其他的调整：</h4><ul>
+<li><code>probability.ConditionalProbDist.default_factory</code>现在继承自<code>dict</code>而不是<code>defaultdict</code></li>
+<li><code>probability.ConditionalProbDistI.default_factory</code>现在继承自<code>dict</code>而不是<code>defaultdict</code></li>
+<li><code>probability.ConditionalProbDistProbDist.default_factory</code>现在继承自<code>dict</code>而不是<code>defaultdict</code></li>
+<li><code>tag.senna.SennaTagger</code>-&gt;<code>classify.Senna</code></li>
+<li><code>tag.senna.POSTagger</code>-&gt;<code>tag.SennaTagger</code></li>
+<li><code>tag.senna.CHKTagger</code>-&gt;<code>tag.SennaChunkTagger</code></li>
+</ul>
+<h4 id="显示调整："><a href="#显示调整：" class="headerlink" title="显示调整："></a>显示调整：</h4><p>3.0.2版本之后，参见 <a href="https://github.com/nltk/nltk/issues/804" target="_blank" rel="external">https://github.com/nltk/nltk/issues/804</a></p>
+<ul>
+<li><code>classify.decisiontree.DecisionTreeClassifier.pp</code>-&gt;<code>pretty_format</code></li>
+<li><code>metrics.confusionmatrix.ConfusionMatrix.pp</code>-&gt;<code>pretty_format</code></li>
+<li><code>sem.lfg.FStructure.pprint</code>-&gt;<code>pretty_format</code></li>
+<li><code>sem.drt.DrtExpression.pretty</code>-&gt;<code>pretty_format</code></li>
+<li><code>parse.chart.Chart.pp</code>-&gt;<code>pretty_format</code></li>
+<li><code>Tree.pprint()</code>-&gt;<code>pformat</code></li>
+<li><code>FreqDist.pprint</code>-&gt;<code>pformat</code></li>
+<li><code>Tree.pretty_print</code>-&gt;<code>pprint</code></li>
+<li><code>Tree.pprint_latex_qtree</code>-&gt;<code>pformat_latex_qtree</code></li>
+</ul>
+<p><strong><em>有任何的意见或建议欢迎留言</em></strong></p>
 
       
     </div>
@@ -284,18 +383,26 @@ Quick">
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/nltk/" rel="tag">#nltk</a>
+          
+            <a href="/tags/python3/" rel="tag">#python3</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/05/28/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/06/04/nltk-python3接口变更/" rel="prev" title="nltk python3接口变更">
-                nltk python3接口变更 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -321,8 +428,8 @@ Quick">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/28/hello-world/"
-           data-title="Hello World" data-url="https://thylaco1eo.github.io/2016/05/28/hello-world/">
+      <div class="ds-thread" data-thread-key="2016/06/04/nltk-python3接口变更/"
+           data-title="nltk python3接口变更" data-url="https://thylaco1eo.github.io/2016/06/04/nltk-python3接口变更/">
       </div>
     
   </div>
@@ -428,7 +535,7 @@ Quick">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#接口的改变："><span class="nav-number">1.</span> <span class="nav-text">接口的改变：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过字符串创建对象："><span class="nav-number">2.</span> <span class="nav-text">通过字符串创建对象：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他项目上的操作："><span class="nav-number">3.</span> <span class="nav-text">其他项目上的操作：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#probability-FreqDist中的调整："><span class="nav-number">4.</span> <span class="nav-text">probability.FreqDist中的调整：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分词算法调整"><span class="nav-number">5.</span> <span class="nav-text">分词算法调整;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#移除的模块，类和函数："><span class="nav-number">6.</span> <span class="nav-text">移除的模块，类和函数：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他的调整："><span class="nav-number">7.</span> <span class="nav-text">其他的调整：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显示调整："><span class="nav-number">8.</span> <span class="nav-text">显示调整：</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
