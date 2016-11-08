@@ -84,16 +84,25 @@
 
 
 
-<meta name="description" content="最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的">
+<meta name="description" content="最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的模型中去。我发现google官方竟然没有这方面的教程。在网上找了一圈之后终于让程序跑起来了，总结一下方法吧。
+教程摘自stackoverflow中的相关问题：
+我们需要通过设定一个tf.Varible来存储embedding，然后用tf.placeholder()通过NumPy array来初始化它：
+训练完成的word2vec">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tensorflow使用Word2vec模型">
 <meta property="og:url" content="https://thylaco1eo.github.io/2016/11/08/Tensorflow使用Word2vec模型/index.html">
 <meta property="og:site_name" content="thylaco1eo site">
-<meta property="og:description" content="最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的">
-<meta property="og:updated_time" content="2016-11-08T07:28:39.680Z">
+<meta property="og:description" content="最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的模型中去。我发现google官方竟然没有这方面的教程。在网上找了一圈之后终于让程序跑起来了，总结一下方法吧。
+教程摘自stackoverflow中的相关问题：
+我们需要通过设定一个tf.Varible来存储embedding，然后用tf.placeholder()通过NumPy array来初始化它：
+训练完成的word2vec">
+<meta property="og:updated_time" content="2016-11-08T17:00:02.491Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tensorflow使用Word2vec模型">
-<meta name="twitter:description" content="最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的">
+<meta name="twitter:description" content="最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的模型中去。我发现google官方竟然没有这方面的教程。在网上找了一圈之后终于让程序跑起来了，总结一下方法吧。
+教程摘自stackoverflow中的相关问题：
+我们需要通过设定一个tf.Varible来存储embedding，然后用tf.placeholder()通过NumPy array来初始化它：
+训练完成的word2vec">
 
 
 
@@ -311,7 +320,14 @@
       
 
       
-        <p>最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的</p>
+        <p>最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的模型中去。我发现google官方竟然没有这方面的教程。在网上找了一圈之后终于让程序跑起来了，总结一下方法吧。</p>
+<p>教程摘自<a href="http://stackoverflow.com/questions/35687678/using-a-pre-trained-word-embedding-word2vec-or-glove-in-tensorflow" target="_blank" rel="external">stackoverflow中的相关问题</a>：</p>
+<p>我们需要通过设定一个<code>tf.Varible</code>来存储embedding，然后用<code>tf.placeholder()</code>通过NumPy array来初始化它：</p>
+<p>训练完成的word2vec都会有一个保存词向量文件，这里假定文件名为“a.bin”。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">W = tf.Variable(tf.constant(0.0, shape=[vocab_size, embedding_dim]),trainable=False, name=&quot;W&quot;)</span><br><span class="line">embedding_placeholder = tf.placeholder(tf.float32, [vocab_size, embedding_dim])  </span><br><span class="line">embedding_init = W.assign(embedding_placeholder)</span><br></pre></td></tr></table></figure></p>
+<p>先做一个placeholder来给embedding占位，然后通过embedding_init来初始化embedding。<br><a id="more"></a><br>之后就可以读入训练好的word2vec模型，像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">f = open(&apos;a.bin&apos;,&apos;r&apos;).readlines()</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">读入处理数据</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">embedding = np.array(f)</span><br></pre></td></tr></table></figure></p>
+<p>之后再在Session中执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sess.run(embedding_init, feed_dict=&#123;embedding_placeholder: embedding&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>需要补充的是，当你的网络构建和训练不在同一个文件中的时候，比如说<a href="https://github.com/dennybritz/cnn-text-classification-tf" target="_blank" rel="external">cnn-text-classification-tf</a>中的text_cnn.py和train.py这样的情况时，embedding_init是作为网络对象的参数出现的，所以要改为”对象名.embedding_init”。然后第一段代码放在网络的构建文件中，读入数据放在训练文件开tf.Graph之前。这样就可以在Tensorflow中使用训练好的Word2vec模型了。</p>
+<p><strong><em>有任何的意见或建议欢迎留言</em></strong></p>
 
       
     </div>

@@ -316,10 +316,16 @@
 
       
         
-          
-            <p>最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的</p>
-
-          
+          <p>最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的模型中去。我发现google官方竟然没有这方面的教程。在网上找了一圈之后终于让程序跑起来了，总结一下方法吧。</p>
+<p>教程摘自<a href="http://stackoverflow.com/questions/35687678/using-a-pre-trained-word-embedding-word2vec-or-glove-in-tensorflow">stackoverflow中的相关问题</a>：</p>
+<p>我们需要通过设定一个<code>tf.Varible</code>来存储embedding，然后用<code>tf.placeholder()</code>通过NumPy array来初始化它：</p>
+<p>训练完成的word2vec都会有一个保存词向量文件，这里假定文件名为“a.bin”。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">W = tf.Variable(tf.constant(0.0, shape=[vocab_size, embedding_dim]),trainable=False, name=&quot;W&quot;)</span><br><span class="line">embedding_placeholder = tf.placeholder(tf.float32, [vocab_size, embedding_dim])  </span><br><span class="line">embedding_init = W.assign(embedding_placeholder)</span><br></pre></td></tr></table></figure></p>
+<p>先做一个placeholder来给embedding占位，然后通过embedding_init来初始化embedding。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/08/Tensorflow使用Word2vec模型/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
