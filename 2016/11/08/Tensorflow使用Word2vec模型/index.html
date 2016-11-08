@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="NLP,中文分词," />
+  <meta name="keywords" content="Tensorflow,Word2vec," />
 
 
 
@@ -57,19 +57,16 @@
 
 
 
-<meta name="description" content="讲道理的话这是一篇极端挖坟的文章。这两篇博客早在2011年就被Matrix67发表在了他的博客上。我也是最近才有幸读到这两篇文章。Matrix67在这两篇文章中不仅展现了他作为理科生的严谨思路，更加展现了转文之后扎实的语言功底。
-　　在上篇中，作者主要介绍了中文分词的几种主要的方法。从最大匹配法最少词数法再到识别专有名词和人名的算法，作者通过大量的例子和正反说明使得整个证明过程非常的清晰明了，">
+<meta name="description" content="最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="中文分词入门推荐-漫话中文分词算法">
-<meta property="og:url" content="https://thylaco1eo.github.io/2016/07/21/中文分词入门推荐-漫话中文分词算法/index.html">
+<meta property="og:title" content="Tensorflow使用Word2vec模型">
+<meta property="og:url" content="https://thylaco1eo.github.io/2016/11/08/Tensorflow使用Word2vec模型/index.html">
 <meta property="og:site_name" content="thylaco1eo site">
-<meta property="og:description" content="讲道理的话这是一篇极端挖坟的文章。这两篇博客早在2011年就被Matrix67发表在了他的博客上。我也是最近才有幸读到这两篇文章。Matrix67在这两篇文章中不仅展现了他作为理科生的严谨思路，更加展现了转文之后扎实的语言功底。
-　　在上篇中，作者主要介绍了中文分词的几种主要的方法。从最大匹配法最少词数法再到识别专有名词和人名的算法，作者通过大量的例子和正反说明使得整个证明过程非常的清晰明了，">
-<meta property="og:updated_time" content="2016-07-21T09:17:57.533Z">
+<meta property="og:description" content="最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的">
+<meta property="og:updated_time" content="2016-11-08T07:05:12.949Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="中文分词入门推荐-漫话中文分词算法">
-<meta name="twitter:description" content="讲道理的话这是一篇极端挖坟的文章。这两篇博客早在2011年就被Matrix67发表在了他的博客上。我也是最近才有幸读到这两篇文章。Matrix67在这两篇文章中不仅展现了他作为理科生的严谨思路，更加展现了转文之后扎实的语言功底。
-　　在上篇中，作者主要介绍了中文分词的几种主要的方法。从最大匹配法最少词数法再到识别专有名词和人名的算法，作者通过大量的例子和正反说明使得整个证明过程非常的清晰明了，">
+<meta name="twitter:title" content="Tensorflow使用Word2vec模型">
+<meta name="twitter:description" content="最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的">
 
 
 
@@ -87,7 +84,7 @@
   };
 </script>
 
-  <title> 中文分词入门推荐-漫话中文分词算法 | thylaco1eo site </title>
+  <title> Tensorflow使用Word2vec模型 | thylaco1eo site </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -217,7 +214,7 @@
             
             
               
-                中文分词入门推荐-漫话中文分词算法
+                Tensorflow使用Word2vec模型
               
             
           </h1>
@@ -229,8 +226,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-21T16:08:57+08:00" content="2016-07-21">
-              2016-07-21
+            <time itemprop="dateCreated" datetime="2016-11-08T14:52:16+08:00" content="2016-11-08">
+              2016-11-08
             </time>
           </span>
 
@@ -259,8 +256,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/21/中文分词入门推荐-漫话中文分词算法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/21/中文分词入门推荐-漫话中文分词算法/" itemprop="commentsCount"></span>
+                <a href="/2016/11/08/Tensorflow使用Word2vec模型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/08/Tensorflow使用Word2vec模型/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -282,15 +279,7 @@
       
 
       
-        <p>　　讲道理的话这是一篇极端挖坟的文章。这两篇博客早在2011年就被<a href="http://www.matrix67.com/blog/" target="_blank" rel="external">Matrix67</a>发表在了他的博客上。我也是最近才有幸读到这两篇文章。Matrix67在这两篇文章中不仅展现了他作为理科生的严谨思路，更加展现了转文之后扎实的语言功底。</p>
-<p>　　在上篇中，作者主要介绍了中文分词的几种主要的方法。从最大匹配法最少词数法再到识别专有名词和人名的算法，作者通过大量的例子和正反说明使得整个证明过程非常的清晰明了，不会让读者有阅读上的压力。作者在这两篇文章中都尽可能的避免了公式的推导使得整个讲解过程显得非常连贯。应该说上篇是一片非常适合初学者，甚至是没有一点自然语言处理基础的人来阅读的。</p>
-<p>　　在下篇中，作者主要介绍了句法结构和语义结构相关的知识。在这篇文章中，作者拿出了很大的篇幅介绍了一个重要的文法———“上下文无关文法”。由这个文法再引出中文的多种语义结构就不显得非常的难以理解了。其中，多张图片辅助介绍也使得读者理解起来非常的清晰。</p>
-<p>　　在这两篇文章中作者的风趣幽默也展现无遗，这里仅仅摘录两个小段供大家欣赏。更多的内容还请大家移步原作者的博客细细品读吧。<br><a href="http://www.matrix67.com/blog/archives/4212" target="_blank" rel="external">漫话中文自动分词和语义识别（上）：中文分词算法</a> <a href="http://www.matrix67.com/blog/archives/4870" target="_blank" rel="external">漫话中文自动分词和语义识别（下）：句法结构和语义结构</a></p>
-<blockquote>
-<p>很多反映时代性的名字也是本身就成词的，例如“建国”、“建设”、“国庆”、“跃进”等等。更讨厌的就是那些整个名字本身就是常用词的人了，他们会彻底打乱之前的各种模型。如果分词程序也有智能的话，他一定会把所有叫“高峰”、“汪洋”的人拖出去斩了；要是听说了有人居然敢叫“令计划”，估计直接就崩溃了。</p>
-<p>生成语法有两个大问题。首先，句法结构正确的句子不见得都是好句子。 Chomsky 本人给出了一个经典的例子： Colorless green ideas sleep furiously 。形容词加形容词加名词加动词加副词，这是一个完全符合句法要求的序列，但随便拼凑会闹出很多笑话——什么叫做“无色的绿色的想法在狂暴地睡觉”？</p>
-</blockquote>
-<p><strong><em>有任何的意见或建议欢迎留言</em></strong></p>
+        <p>最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的</p>
 
       
     </div>
@@ -305,9 +294,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/NLP/" rel="tag">#NLP</a>
+            <a href="/tags/Tensorflow/" rel="tag">#Tensorflow</a>
           
-            <a href="/tags/中文分词/" rel="tag">#中文分词</a>
+            <a href="/tags/Word2vec/" rel="tag">#Word2vec</a>
           
         </div>
       
@@ -316,17 +305,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/04/nltk-python3接口变更/" rel="next" title="nltk python3接口变更">
-                <i class="fa fa-chevron-left"></i> nltk python3接口变更
+              <a href="/2016/09/12/Tensorflow笔记：中文数据处理/" rel="next" title="Tensorflow笔记：中文数据处理">
+                <i class="fa fa-chevron-left"></i> Tensorflow笔记：中文数据处理
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/12/Tensorflow笔记：中文数据处理/" rel="prev" title="Tensorflow笔记：中文数据处理">
-                Tensorflow笔记：中文数据处理 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -352,8 +337,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/07/21/中文分词入门推荐-漫话中文分词算法/"
-           data-title="中文分词入门推荐-漫话中文分词算法" data-url="https://thylaco1eo.github.io/2016/07/21/中文分词入门推荐-漫话中文分词算法/">
+      <div class="ds-thread" data-thread-key="2016/11/08/Tensorflow使用Word2vec模型/"
+           data-title="Tensorflow使用Word2vec模型" data-url="https://thylaco1eo.github.io/2016/11/08/Tensorflow使用Word2vec模型/">
       </div>
     
   </div>
