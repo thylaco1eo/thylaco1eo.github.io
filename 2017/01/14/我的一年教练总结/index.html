@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Tensorflow,Word2vec," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,25 +84,19 @@
 
 
 
-<meta name="description" content="最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的模型中去。我发现google官方竟然没有这方面的教程。在网上找了一圈之后终于让程序跑起来了，总结一下方法吧。
-教程摘自stackoverflow中的相关问题：
-我们需要通过设定一个tf.Varible来存储embedding，然后用tf.placeholder()通过NumPy array来初始化它：
-训练完成的word2vec">
+<meta name="description" content="从前年到现在，在学校的田径队做助理教练也做了一年多了。期间也出现了很多的问题，有过很多的困惑。不过总的来说，收获的东西还是要比付出的多得多。想一想，还是要在彻底退出田径队之前最后再写点东西吧。就当作是一个总结，希望能给后面的同学多一些参考。一下文中涉及到的一切除非特殊说明都以100、200、110栏为讨论对象，不再特殊说明。
+作为一个教练员的总结，理应先说说训练的事情。对于任何一个运动员来说，有规">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tensorflow使用Word2vec模型">
-<meta property="og:url" content="https://thylaco1eo.github.io/2016/11/08/Tensorflow使用Word2vec模型/index.html">
+<meta property="og:title" content="我的一年教练总结">
+<meta property="og:url" content="https://thylaco1eo.github.io/2017/01/14/我的一年教练总结/index.html">
 <meta property="og:site_name" content="thylaco1eo site">
-<meta property="og:description" content="最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的模型中去。我发现google官方竟然没有这方面的教程。在网上找了一圈之后终于让程序跑起来了，总结一下方法吧。
-教程摘自stackoverflow中的相关问题：
-我们需要通过设定一个tf.Varible来存储embedding，然后用tf.placeholder()通过NumPy array来初始化它：
-训练完成的word2vec">
-<meta property="og:updated_time" content="2016-11-08T17:00:02.491Z">
+<meta property="og:description" content="从前年到现在，在学校的田径队做助理教练也做了一年多了。期间也出现了很多的问题，有过很多的困惑。不过总的来说，收获的东西还是要比付出的多得多。想一想，还是要在彻底退出田径队之前最后再写点东西吧。就当作是一个总结，希望能给后面的同学多一些参考。一下文中涉及到的一切除非特殊说明都以100、200、110栏为讨论对象，不再特殊说明。
+作为一个教练员的总结，理应先说说训练的事情。对于任何一个运动员来说，有规">
+<meta property="og:updated_time" content="2017-01-14T05:50:20.888Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tensorflow使用Word2vec模型">
-<meta name="twitter:description" content="最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的模型中去。我发现google官方竟然没有这方面的教程。在网上找了一圈之后终于让程序跑起来了，总结一下方法吧。
-教程摘自stackoverflow中的相关问题：
-我们需要通过设定一个tf.Varible来存储embedding，然后用tf.placeholder()通过NumPy array来初始化它：
-训练完成的word2vec">
+<meta name="twitter:title" content="我的一年教练总结">
+<meta name="twitter:description" content="从前年到现在，在学校的田径队做助理教练也做了一年多了。期间也出现了很多的问题，有过很多的困惑。不过总的来说，收获的东西还是要比付出的多得多。想一想，还是要在彻底退出田径队之前最后再写点东西吧。就当作是一个总结，希望能给后面的同学多一些参考。一下文中涉及到的一切除非特殊说明都以100、200、110栏为讨论对象，不再特殊说明。
+作为一个教练员的总结，理应先说说训练的事情。对于任何一个运动员来说，有规">
 
 
 
@@ -124,7 +118,7 @@
 
 
 
-  <title> Tensorflow使用Word2vec模型 | thylaco1eo site </title>
+  <title> 我的一年教练总结 | thylaco1eo site </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -254,7 +248,7 @@
             
             
               
-                Tensorflow使用Word2vec模型
+                我的一年教练总结
               
             
           </h1>
@@ -266,8 +260,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-08T14:52:16+08:00" content="2016-11-08">
-              2016-11-08
+            <time itemprop="dateCreated" datetime="2017-01-14T13:07:29+08:00" content="2017-01-14">
+              2017-01-14
             </time>
           </span>
 
@@ -280,8 +274,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/NLP/" itemprop="url" rel="index">
-                    <span itemprop="name">NLP</span>
+                  <a href="/categories/个人总结/" itemprop="url" rel="index">
+                    <span itemprop="name">个人总结</span>
                   </a>
                 </span>
 
@@ -296,8 +290,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/11/08/Tensorflow使用Word2vec模型/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/08/Tensorflow使用Word2vec模型/" itemprop="commentsCount"></span>
+                <a href="/2017/01/14/我的一年教练总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/14/我的一年教练总结/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -320,14 +314,24 @@
       
 
       
-        <p>最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的模型中去。我发现google官方竟然没有这方面的教程。在网上找了一圈之后终于让程序跑起来了，总结一下方法吧。</p>
-<p>教程摘自<a href="http://stackoverflow.com/questions/35687678/using-a-pre-trained-word-embedding-word2vec-or-glove-in-tensorflow" target="_blank" rel="external">stackoverflow中的相关问题</a>：</p>
-<p>我们需要通过设定一个<code>tf.Varible</code>来存储embedding，然后用<code>tf.placeholder()</code>通过NumPy array来初始化它：</p>
-<p>训练完成的word2vec都会有一个保存词向量文件，这里假定文件名为“a.bin”。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">W = tf.Variable(tf.constant(0.0, shape=[vocab_size, embedding_dim]),trainable=False, name=&quot;W&quot;)</span><br><span class="line">embedding_placeholder = tf.placeholder(tf.float32, [vocab_size, embedding_dim])  </span><br><span class="line">embedding_init = W.assign(embedding_placeholder)</span><br></pre></td></tr></table></figure></p>
-<p>先做一个placeholder来给embedding占位，然后通过embedding_init来初始化embedding。<br><a id="more"></a><br>之后就可以读入训练好的word2vec模型，像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">f = open(&apos;a.bin&apos;,&apos;r&apos;).readlines()</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">读入处理数据</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">embedding = np.array(f)</span><br></pre></td></tr></table></figure></p>
-<p>之后再在Session中执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sess.run(embedding_init, feed_dict=&#123;embedding_placeholder: embedding&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>需要补充的是，当你的网络构建和训练不在同一个文件中的时候，比如说<a href="https://github.com/dennybritz/cnn-text-classification-tf" target="_blank" rel="external">cnn-text-classification-tf</a>中的text_cnn.py和train.py这样的情况时，embedding_init是作为网络对象的参数出现的，所以要改为”对象名.embedding_init”。然后第一段代码放在网络的构建文件中，读入数据放在训练文件开tf.Graph之前。这样就可以在Tensorflow中使用训练好的Word2vec模型了。</p>
-<p><strong><em>有任何的意见或建议欢迎留言</em></strong></p>
+        <p>从前年到现在，在学校的田径队做助理教练也做了一年多了。期间也出现了很多的问题，有过很多的困惑。不过总的来说，收获的东西还是要比付出的多得多。想一想，还是要在彻底退出田径队之前最后再写点东西吧。就当作是一个总结，希望能给后面的同学多一些参考。一下文中涉及到的一切除非特殊说明都以100、200、110栏为讨论对象，不再特殊说明。</p>
+<p>作为一个教练员的总结，理应先说说训练的事情。对于任何一个运动员来说，有规律的训练和休息都是重中之重。普通高校的学生运动员和甲等院校的专业运动员肯定是不能相提并论的，无论是训练计划还是训练量都是不能完全照搬的。但是规律的训练计划还是应该保证的，一周三到四次的训练必须得到保证，这是保障成绩的基础。同时，应该尽量避免在早上九点钟，下午一点到三点，以及晚上进行训练。这三个时间段这三个时间段不是太早就是太晚，抑或是人体最疲惫的时间段，不但训练质量得不到应有的保证而且肯能会发生一些意料之外的安全问题。规律的训练不仅要求教练员对于自己的训练计划有一个清醒的认识，更要求运动员自身应该保持一个较高的出勤率。这就已经超出教练员的能力范围了。<br><a id="more"></a></p>
+<p>其次，教练员作为训练的管理者应该在训练中着重控制训练的质量与节奏。一次训练的时长应该保持在一个半小时左右，但并不意味着做满了一个半小时的训练就可以打卡下班了。下面简单介绍一下我在这一年中总结的一些经验。首先，我们应该对一个半小时的训练时间进行大致的分配。热身：30分钟；训练计划：45分钟；放松：15分钟。这种分配看起来训练所花费的时间并不长，实际上真正要高质量地完成好这45分钟的训练是非常不容易的。正因为训练持续的时间相对短，所以训练的强度就相对地提高了。对于100，200，110栏这样的短距离的项目来说，这45分钟里一个男运动员应该至少完成总计1200米的冲刺或者等量强度的训练，女运动员应该至少完成总计800米的冲刺或者等量强度的训练。以冲刺为例，这种冲刺的强度应该是稳定的，教练员应该视队员的能力不同而针对每一个队员设定不同的标准，这个标准在接下来的训练中没有特殊情况就不再修改了。我在平时训练的过程中通常设定的标准是该队员最好成绩加0.7秒（以一百米冲刺为例），每组的总量保持基本一致。这样的标准会使队员在训练中不至于一下就到达极点，可以充分完成训练计划。这样的标准在不同的项目上对于不同队员也是不同的，所以不应偷懒而做出通用的训练计划。关于如何把握训练的强度这个问题，平时我们可以通过组间测脉搏的方式来把握训练强度，一般来讲，半分钟脉搏控制在55～60是一个相对稳妥的方式。一旦出现过高的脉搏，教练员就应该及时的对训练计划作出调整。这样控制的训练节奏和训练质量就会有一个相对不错的保证。说完了训练再返回来说说热身，热身其实是训练的一个非常关键的阶段，热身效果的好坏可能会直接性想到接下来的训练，热身应该注意几个要点。</p>
+<ul>
+<li><p>关节活动要充分。要给关节活动充分的时间，特别是一些平时不太注意的比如胯骨附近也要做充分的活动。</p>
+</li>
+<li><p>韧带拉伸要适量。过度的拉伸韧带会造成一种肌肉疲惫的感觉，可能会影响到接下来的训练。</p>
+</li>
+<li><p>进行基本动作的练习，在热身中加入基本动作的练习，比如小步跑、高抬腿、跨步跳、车轮跑等练习有助于跑步姿势的调节与巩固。</p>
+</li>
+</ul>
+<p>最后说说放松。。。算了，实在不知道说什么，不写了。</p>
+<p>最后一部分是关于训练计划的设计。总的来说训练计划应该包括爆发力，速度耐力，核心力量，技术动作与协调性这五个方面，在设计训练计划的时候应该在每个周期将这五部分都至少做一次。在每天的训练计划中，应该以某一项为主，其他项目围绕这个项目来进行。在这部分上我一直觉得自己做的并不好，而且没有找到一个稳定的平衡点，所以能写的不多。作为教练员的部分就写到这里吧。</p>
+<p>接下来写写自己作为运动员的部分。其实自己是在做助理教练之后才有对自己之前做过的训练有了一个更加深刻的认识。作为一个运动员，艰苦的训练肯定是硬实力的一大保证。但是仅仅是硬实力还是不够的。作为一个运动员，在场上是一种全方位的较量，比赛的环境会将你的所有缺点都放大到最大。这时，作为一个运动员首先应该保持一个冷静的头脑。比赛总共的时间是非常短暂的。这就要求我们没有后悔的时间，在任何失误发生之后都要立刻选出正确的补救方法，把损失降到最低。其次，跑步不仅是一个发力的对决，更是一个控制力的对决。在落后的时候，只有先将自己的技术动作控制住，才有追上的可能。一旦动作变形，那就不可能再追上了。在整个比赛的过程中，所有的技术动作都应该是一种下意识的自然动作，而不是留力的结果。这就要求我们在平时的训练中时刻保持自己的技术动作，养成良好的习惯，让动作成为我们放松的常态，而不是紧张的情况。</p>
+<p>其实感觉写了挺多的废话，还有很多东西感觉没说出来。在过去的这一年带队员的过程中，我的组里曾经有很多的队员，但是最后剩下的没有几个人。反思原因，我觉得我有不可推卸的责任，但是也看到了一些我改变不了的东西。</p>
+<p>我见过曾经实力超越一般人的，我见过天赋很高的，我见过埋头苦练的，我也见过自视甚高的。。。但是他们最终都没有超过我。归结原因可能是因为没有状元师傅哪儿来的状元徒弟吧。</p>
+<p>写这个的时候已经很晚了，只是想把自己在过去一年中做的一点事情记录下来，无论是当作经验还是给自己以后作为反思的参考都是不错的吧。最后一段想来想去我把它删掉了重写了，实在是组织不好语言来写那部分的东西了。想了想，也不是现在的我应该评价的东西。这些东西只是我的一家之间，经验之谈。觉得有用的话就在心里记一点，觉得没用呢。。。就当是一个傻子脑子烧坏了写下来的胡话吧。</p>
+<p>运动，不只是身体，还要带脑子，带心，否则什么教练也帮不了你。</p>
 
       
     </div>
@@ -348,30 +352,18 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Tensorflow/" rel="tag">#Tensorflow</a>
-          
-            <a href="/tags/Word2vec/" rel="tag">#Word2vec</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/12/Tensorflow笔记：中文数据处理/" rel="next" title="Tensorflow笔记：中文数据处理">
-                <i class="fa fa-chevron-left"></i> Tensorflow笔记：中文数据处理
+              <a href="/2016/11/08/Tensorflow使用Word2vec模型/" rel="next" title="Tensorflow使用Word2vec模型">
+                <i class="fa fa-chevron-left"></i> Tensorflow使用Word2vec模型
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/01/14/我的一年教练总结/" rel="prev" title="我的一年教练总结">
-                我的一年教练总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -397,8 +389,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/11/08/Tensorflow使用Word2vec模型/"
-           data-title="Tensorflow使用Word2vec模型" data-url="https://thylaco1eo.github.io/2016/11/08/Tensorflow使用Word2vec模型/">
+      <div class="ds-thread" data-thread-key="2017/01/14/我的一年教练总结/"
+           data-title="我的一年教练总结" data-url="https://thylaco1eo.github.io/2017/01/14/我的一年教练总结/">
       </div>
     
   </div>
