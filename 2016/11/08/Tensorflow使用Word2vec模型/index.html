@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -29,7 +29,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -63,46 +63,39 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Tensorflow,Word2vec," />
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="Tensorflow,Word2vec,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2">
 
 
 
 
 
 
-<meta name="description" content="最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的模型中去。我发现google官方竟然没有这方面的教程。在网上找了一圈之后终于让程序跑起来了，总结一下方法吧。
-教程摘自stackoverflow中的相关问题：
-我们需要通过设定一个tf.Varible来存储embedding，然后用tf.placeholder()通过NumPy array来初始化它：
-训练完成的word2vec">
+<meta name="description" content="最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的模型中去。我发现google官方竟然没有这方面的教程。在网上找了一圈之后终于让程序跑起来了，总结一下方法吧。 教程摘自stackoverflow中的相关问题： 我们需要通过设定一个tf.Varible来存储embedding，然后用tf.placeholder()通过NumPy array来初始化它： 训练完成的word2vec">
+<meta name="keywords" content="Tensorflow,Word2vec">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tensorflow使用Word2vec模型">
 <meta property="og:url" content="https://thylaco1eo.github.io/2016/11/08/Tensorflow使用Word2vec模型/index.html">
 <meta property="og:site_name" content="thylaco1eo site">
-<meta property="og:description" content="最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的模型中去。我发现google官方竟然没有这方面的教程。在网上找了一圈之后终于让程序跑起来了，总结一下方法吧。
-教程摘自stackoverflow中的相关问题：
-我们需要通过设定一个tf.Varible来存储embedding，然后用tf.placeholder()通过NumPy array来初始化它：
-训练完成的word2vec">
-<meta property="og:updated_time" content="2016-11-08T17:00:02.491Z">
+<meta property="og:description" content="最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的模型中去。我发现google官方竟然没有这方面的教程。在网上找了一圈之后终于让程序跑起来了，总结一下方法吧。 教程摘自stackoverflow中的相关问题： 我们需要通过设定一个tf.Varible来存储embedding，然后用tf.placeholder()通过NumPy array来初始化它： 训练完成的word2vec">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-11-08T17:00:02.492Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tensorflow使用Word2vec模型">
-<meta name="twitter:description" content="最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的模型中去。我发现google官方竟然没有这方面的教程。在网上找了一圈之后终于让程序跑起来了，总结一下方法吧。
-教程摘自stackoverflow中的相关问题：
-我们需要通过设定一个tf.Varible来存储embedding，然后用tf.placeholder()通过NumPy array来初始化它：
-训练完成的word2vec">
+<meta name="twitter:description" content="最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的模型中去。我发现google官方竟然没有这方面的教程。在网上找了一圈之后终于让程序跑起来了，总结一下方法吧。 教程摘自stackoverflow中的相关问题： 我们需要通过设定一个tf.Varible来存储embedding，然后用tf.placeholder()通过NumPy array来初始化它： 训练完成的word2vec">
 
 
 
@@ -124,10 +117,10 @@
 
 
 
-  <title> Tensorflow使用Word2vec模型 | thylaco1eo site </title>
+  <title> Tensorflow使用Word2vec模型 | thylaco1eo site </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="//schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -145,15 +138,15 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">thylaco1eo site</span>
       <span class="logo-line-after"><i></i></span>
@@ -180,7 +173,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -190,7 +183,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -200,7 +193,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -210,7 +203,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -243,7 +236,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="//schema.org/Article">
 
     
       <header class="post-header">
@@ -266,20 +259,20 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-08T14:52:16+08:00" content="2016-11-08">
+            <time itemprop="dateCreated" datetime="2016-11-08T14:52:16+01:00" content="2016-11-08">
               2016-11-08
             </time>
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
                   <a href="/categories/NLP/" itemprop="url" rel="index">
                     <span itemprop="name">NLP</span>
                   </a>
@@ -321,12 +314,12 @@
 
       
         <p>最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的模型中去。我发现google官方竟然没有这方面的教程。在网上找了一圈之后终于让程序跑起来了，总结一下方法吧。</p>
-<p>教程摘自<a href="http://stackoverflow.com/questions/35687678/using-a-pre-trained-word-embedding-word2vec-or-glove-in-tensorflow" target="_blank" rel="external">stackoverflow中的相关问题</a>：</p>
+<p>教程摘自<a href="http://stackoverflow.com/questions/35687678/using-a-pre-trained-word-embedding-word2vec-or-glove-in-tensorflow" target="_blank" rel="noopener">stackoverflow中的相关问题</a>：</p>
 <p>我们需要通过设定一个<code>tf.Varible</code>来存储embedding，然后用<code>tf.placeholder()</code>通过NumPy array来初始化它：</p>
 <p>训练完成的word2vec都会有一个保存词向量文件，这里假定文件名为“a.bin”。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">W = tf.Variable(tf.constant(0.0, shape=[vocab_size, embedding_dim]),trainable=False, name=&quot;W&quot;)</span><br><span class="line">embedding_placeholder = tf.placeholder(tf.float32, [vocab_size, embedding_dim])  </span><br><span class="line">embedding_init = W.assign(embedding_placeholder)</span><br></pre></td></tr></table></figure></p>
 <p>先做一个placeholder来给embedding占位，然后通过embedding_init来初始化embedding。<br><a id="more"></a><br>之后就可以读入训练好的word2vec模型，像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">f = open(&apos;a.bin&apos;,&apos;r&apos;).readlines()</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">读入处理数据</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">embedding = np.array(f)</span><br></pre></td></tr></table></figure></p>
 <p>之后再在Session中执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sess.run(embedding_init, feed_dict=&#123;embedding_placeholder: embedding&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>需要补充的是，当你的网络构建和训练不在同一个文件中的时候，比如说<a href="https://github.com/dennybritz/cnn-text-classification-tf" target="_blank" rel="external">cnn-text-classification-tf</a>中的text_cnn.py和train.py这样的情况时，embedding_init是作为网络对象的参数出现的，所以要改为”对象名.embedding_init”。然后第一段代码放在网络的构建文件中，读入数据放在训练文件开tf.Graph之前。这样就可以在Tensorflow中使用训练好的Word2vec模型了。</p>
+<p>需要补充的是，当你的网络构建和训练不在同一个文件中的时候，比如说<a href="https://github.com/dennybritz/cnn-text-classification-tf" target="_blank" rel="noopener">cnn-text-classification-tf</a>中的text_cnn.py和train.py这样的情况时，embedding_init是作为网络对象的参数出现的，所以要改为”对象名.embedding_init”。然后第一段代码放在网络的构建文件中，读入数据放在训练文件开tf.Graph之前。这样就可以在Tensorflow中使用训练好的Word2vec模型了。</p>
 <p><strong><em>有任何的意见或建议欢迎留言</em></strong></p>
 
       
@@ -397,8 +390,7 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/11/08/Tensorflow使用Word2vec模型/"
-           data-title="Tensorflow使用Word2vec模型" data-url="https://thylaco1eo.github.io/2016/11/08/Tensorflow使用Word2vec模型/">
+      <div class="ds-thread" data-thread-key="2016/11/08/Tensorflow使用Word2vec模型/" data-title="Tensorflow使用Word2vec模型" data-url="https://thylaco1eo.github.io/2016/11/08/Tensorflow使用Word2vec模型/">
       </div>
     
   </div>
@@ -423,7 +415,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -433,17 +425,15 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="thylaco1eo" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="thylaco1eo">
           <p class="site-author-name" itemprop="name">thylaco1eo</p>
           <p class="site-description motion-element" itemprop="description"></p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -451,7 +441,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -460,7 +450,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -516,10 +506,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -642,7 +632,7 @@
   
     
     <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
+    <script src="/js/src/hook-duoshuo.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

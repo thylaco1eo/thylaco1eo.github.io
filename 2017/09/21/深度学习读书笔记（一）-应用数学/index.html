@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="deeplearning,">
 
 
 
@@ -84,13 +84,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="thylaco1eo site">
-<meta property="og:url" content="https://thylaco1eo.github.io/categories/NLP/index.html">
+<meta name="description" content="线性代数线性相关和生成子空间如果逆矩阵A-1存在，则对于表达式 $$ \bf{A}\cdot\vec{x} = \vec{b} $$ 不存在解或者存在无数多解。">
+<meta name="keywords" content="deeplearning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深度学习读书笔记（一）--应用数学">
+<meta property="og:url" content="https://thylaco1eo.github.io/2017/09/21/深度学习读书笔记（一）-应用数学/index.html">
 <meta property="og:site_name" content="thylaco1eo site">
+<meta property="og:description" content="线性代数线性相关和生成子空间如果逆矩阵A-1存在，则对于表达式 $$ \bf{A}\cdot\vec{x} = \vec{b} $$ 不存在解或者存在无数多解。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-21T14:17:32.867Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="thylaco1eo site">
+<meta name="twitter:title" content="深度学习读书笔记（一）--应用数学">
+<meta name="twitter:description" content="线性代数线性相关和生成子空间如果逆矩阵A-1存在，则对于表达式 $$ \bf{A}\cdot\vec{x} = \vec{b} $$ 不存在解或者存在无数多解。">
 
 
 
@@ -112,7 +117,7 @@
 
 
 
-  <title> 分类: NLP | thylaco1eo site </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 深度学习读书笔记（一）--应用数学 | thylaco1eo site </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope="" itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -133,7 +138,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left  ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
@@ -221,97 +226,148 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2>
-        NLP
-        <small>分类</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/11/08/Tensorflow使用Word2vec模型/" itemprop="url">
-              
-                <span itemprop="name">Tensorflow使用Word2vec模型</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2016-11-08T14:52:16+01:00" content="2016-11-08">
-          11-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/12/Tensorflow笔记：中文数据处理/" itemprop="url">
-              
-                <span itemprop="name">Tensorflow笔记：中文数据处理</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2016-09-12T16:33:02+02:00" content="2016-09-12">
-          09-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/07/21/中文分词入门推荐-漫话中文分词算法/" itemprop="url">
-              
-                <span itemprop="name">中文分词入门推荐-漫话中文分词算法</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2016-07-21T16:08:57+02:00" content="2016-07-21">
-          07-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </section>
 
   
+  
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                深度学习读书笔记（一）--应用数学
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-21T16:00:12+02:00" content="2017-09-21">
+              2017-09-21
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="/categories/deeplearning/" itemprop="url" rel="index">
+                    <span itemprop="name">deeplearning</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/09/21/深度学习读书笔记（一）-应用数学/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/09/21/深度学习读书笔记（一）-应用数学/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="线性代数"><a href="#线性代数" class="headerlink" title="线性代数"></a>线性代数</h1><h2 id="线性相关和生成子空间"><a href="#线性相关和生成子空间" class="headerlink" title="线性相关和生成子空间"></a>线性相关和生成子空间</h2><p>如果逆矩阵<strong>A</strong><sup>-1</sup>存在，则对于表达式 $$ \bf{A}\cdot\vec{x} = \vec{b} $$ 不存在解或者存在无数多解。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/deeplearning/" rel="tag">#deeplearning</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/14/我的一年教练总结/" rel="next" title="我的一年教练总结">
+                <i class="fa fa-chevron-left"></i> 我的一年教练总结
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -319,6 +375,13 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/09/21/深度学习读书笔记（一）-应用数学/" data-title="深度学习读书笔记（一）--应用数学" data-url="https://thylaco1eo.github.io/2017/09/21/深度学习读书笔记（一）-应用数学/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -338,8 +401,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="thylaco1eo">
           <p class="site-author-name" itemprop="name">thylaco1eo</p>
@@ -365,7 +437,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -399,6 +471,17 @@
       </section>
 
       
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#线性代数"><span class="nav-number">1.</span> <span class="nav-text">线性代数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性相关和生成子空间"><span class="nav-number">1.1.</span> <span class="nav-text">线性相关和生成子空间</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
 
     </div>
   </aside>
@@ -413,7 +496,7 @@
         <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -502,6 +585,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
 
   
 
@@ -532,7 +619,24 @@
   
     
     <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script src="/js/src/hook-duoshuo.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
   
 
 
