@@ -1,461 +1,154 @@
 <!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="thylaco1eo" />
+  <meta name="description" content="" />
+  
+  
+  <title>
+    
+      CS224N:Word_vectors 
+      
+      
+      |
+    
+     thylaco1eo site
+  </title>
+
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
 
 
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 
-
-
-
-
-
-
-
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  
+<script src="/js/fancybox.js"></script>
 
 
   
 
-
-<html class="theme-next mist use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
-
-<link rel="stylesheet" href="/css/main.css?v=7.1.0">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
-
-
-
-
-
-
-
-<script id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    version: '7.1.0',
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
-    back2top: true,
-    back2top_sidebar: false,
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
     }
-  };
-</script>
+  </script>
+
+<meta name="generator" content="Hexo 5.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
-  
-
-
-
-
-  <meta name="description" content="人类语言与词义词义的定义按照常规语言学的思路，词义是指一个标志（单词）与标记物（概念或事物）产生的双射。在英语环境中通常会使用到WordNet，这个庞大的词汇集涵盖了从词性到近义词等等几乎所有跟词汇相关的信息。但是这样的词汇集同时也有它相应的问题。    作为一个数据源非常实用，但是缺少一些词汇的细微差别 缺少词汇最新的意义 需要庞大的工作量来更新 无法计算词汇相似度。">
-<meta name="keywords" content="CS224N,Note">
-<meta property="og:type" content="article">
-<meta property="og:title" content="CS224N:Word_vectors">
-<meta property="og:url" content="https://thylaco1eo.github.io/2020/04/02/CS224N-Word-vectors/index.html">
-<meta property="og:site_name" content="thylaco1eo site">
-<meta property="og:description" content="人类语言与词义词义的定义按照常规语言学的思路，词义是指一个标志（单词）与标记物（概念或事物）产生的双射。在英语环境中通常会使用到WordNet，这个庞大的词汇集涵盖了从词性到近义词等等几乎所有跟词汇相关的信息。但是这样的词汇集同时也有它相应的问题。    作为一个数据源非常实用，但是缺少一些词汇的细微差别 缺少词汇最新的意义 需要庞大的工作量来更新 无法计算词汇相似度。">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-09-16T17:12:01.628Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CS224N:Word_vectors">
-<meta name="twitter:description" content="人类语言与词义词义的定义按照常规语言学的思路，词义是指一个标志（单词）与标记物（概念或事物）产生的双射。在英语环境中通常会使用到WordNet，这个庞大的词汇集涵盖了从词性到近义词等等几乎所有跟词汇相关的信息。但是这样的词汇集同时也有它相应的问题。    作为一个数据源非常实用，但是缺少一些词汇的细微差别 缺少词汇最新的意义 需要庞大的工作量来更新 无法计算词汇相似度。">
-
-
-
-
-
-  
-  
-  <link rel="canonical" href="https://thylaco1eo.github.io/2020/04/02/CS224N-Word-vectors/">
-
-
-
-<script id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>CS224N:Word_vectors | thylaco1eo site</title>
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .motion-element,
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
-
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-</head>
-
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  
-  
-    
-  
-
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">thylaco1eo site</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-    
+  <body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
       
-        <p class="site-subtitle">一个小程序猿向上爬</p>
+        <img src="/images/6839013.jpg" alt="">
       
-    
-    
+    </a>
+    <div class="nickname"><a href="/">thylaco1eo</a></div>
   </div>
-
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-
-
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
+  <div class="navbar">
+    <ul>
       
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
-
-    
-    
-    
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
       
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
-
-    
-    
-    
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
       
-    
-
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-categories">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
-
-  </li>
-
-      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
       
     </ul>
-  
-
-  
-    
-
-  
-
-  
-</nav>
-
-
-
-  
-
-
-
+  </div>
 </div>
-    </header>
-
-    
 
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-          <div id="content" class="content">
-            
+<script src="/js/activeNav.js"></script>
 
-  <div id="posts" class="posts-expand">
-    
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+<!-- LaTex Display -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+
+
 
   
 
   
-  
-  
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://thylaco1eo.github.io/2020/04/02/CS224N-Word-vectors/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="thylaco1eo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="thylaco1eo site">
-    </span>
-
-    
-      <header class="post-header">
-
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">CS224N:Word_vectors</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2020-04-02 19:13:29
+        </span>
         
-        
-          <h1 class="post-title" itemprop="name headline">CS224N:Word_vectors
-
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
                 
-              
-
-              <time title="创建时间：2020-04-02 19:13:29" itemprop="dateCreated datePublished" datetime="2020-04-02T19:13:29+02:00">2020-04-02</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                <span class="span--tag">
+                  <a href="/tags/CS224N/" title="CS224N">
+                    <b>#</b> CS224N
+                  </a>
                 </span>
                 
-                  <span class="post-meta-item-text">更新于</span>
+                <span class="span--tag">
+                  <a href="/tags/Note/" title="Note">
+                    <b>#</b> Note
+                  </a>
+                </span>
                 
-                <time title="修改时间：2020-09-16 19:12:01" itemprop="dateModified" datetime="2020-09-16T19:12:01+02:00">2020-09-16</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a></span>
-
-                
-                
-              
-            </span>
           
-
-          
-            
-            
-          
-
-          
-          
-
-          
-            <span class="post-meta-divider">|</span>
-            <span class="post-meta-item-icon">
-            <i class="fa fa-eye"></i>
-             阅读次数： 
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h1 id="人类语言与词义"><a href="#人类语言与词义" class="headerlink" title="人类语言与词义"></a>人类语言与词义</h1><h2 id="词义的定义"><a href="#词义的定义" class="headerlink" title="词义的定义"></a>词义的定义</h2><p>按照常规语言学的思路，词义是指一个标志（单词）与标记物（概念或事物）产生的双射。在英语环境中通常会使用到WordNet，这个庞大的词汇集涵盖了从词性到近义词等等几乎所有跟词汇相关的信息。但是这样的词汇集同时也有它相应的问题。  </p>
-<ul>
-<li>作为一个数据源非常实用，但是缺少一些词汇的细微差别</li>
-<li>缺少词汇最新的意义</li>
-<li>需要庞大的工作量来更新</li>
-<li>无法计算词汇相似度。  </li>
-</ul>
-<a id="more"></a>
-<h2 id="分布式语义"><a href="#分布式语义" class="headerlink" title="分布式语义"></a>分布式语义</h2><p>分布式语义提供了另外一种理解词义的方法。也就是<strong>一个词汇的意义是由最经常出现在它附近的词汇赋予的</strong>。这种情况下词汇就可以用一个向量进行标识，也就是<em>词向量</em>。</p>
+      </div>
+      <div class="markdown-body">
+        <h2 id="分布式语义"><a href="#分布式语义" class="headerlink" title="分布式语义"></a>分布式语义</h2><p>分布式语义提供了另外一种理解词义的方法。也就是<strong>一个词汇的意义是由最经常出现在它附近的词汇赋予的</strong>。这种情况下词汇就可以用一个向量进行标识，也就是<em>词向量</em>。</p>
 <h3 id="词向量"><a href="#词向量" class="headerlink" title="词向量"></a>词向量</h3><p>词向量有时也被叫做<em>word embedding</em>或者<em>word representations</em>，这是一种分布式的表示方式。通过给予每一个词汇一个稠密向量使得它和与它出现在相似上下文中的词汇相似。</p>
 <h2 id="Word2Vec"><a href="#Word2Vec" class="headerlink" title="Word2Vec"></a>Word2Vec</h2><p>Word2Vec(在2013年由Tomas Mikolov领导的研究团队提出)是一种用于学习词向量的框架。其主要思路如下：  </p>
 <ol>
@@ -467,408 +160,395 @@
 </ol>
 <h3 id="目标函数"><a href="#目标函数" class="headerlink" title="目标函数"></a>目标函数</h3><p>对于每一个位置t=1….T ，用长度为2m的上下文来预测中心词w<sub>j</sub>。<br>相似度：<br>$$ \mathit L(\theta) = \prod_{t=1}^T \prod_{\substack{-m\leq{j}\leq{m} \\ j\ne 0}} \mathit P(w_{t+j}|w_{t};\theta)$$<br>其中$\theta$表示所有需要优化的变量。目标函数(objective function)$\mathit J(\theta)$是相似度负对数的平均值。<br>$$\mathit J(\theta) = -\frac{1}{T}\sum_{t=1}^{T}\sum_{\substack{-m\le j\le m \\ j\ne 0}}logP(w_{t+j}|w_t;\theta)$$<br>目标函数有时也被叫做损失函数(<em>cost</em> or <em>loss</em> function)。降低目标函数的值意味着提升预测的准确度。</p>
 <h3 id="预测函数"><a href="#预测函数" class="headerlink" title="预测函数"></a>预测函数</h3><p>预测函数$P(w_{context}|w_{center})$表示中心词与上下文词汇之间的概率关系。<br>$u_w$表示w是上下文词汇时的向量<br>$v_w$表示w是中心词时的向量<br>$$P(o|c) = \frac{exp(u_o^T v_c)}{\sum_{w\in V}exp(u_w^T v_c)}$$<br>其中分子部分展示了中心词与上下文之间的相似度。点乘的乘积越大，中心词与这个上下文词汇一同出现的可能性越高。分母部分会将整个词汇表进行归一化，以给出统一的概率分布。<br>这个预测函数也是softmax函数的一个例子。softmax函数可以对任意值$x_i$给出概率分布$p_i$。<br>为了优化目标函数,我们取关于中心词c的偏微分<br>$$\frac{\partial}{\partial v_c} logP(o|c) = u_o-\sum_{x=1}^vp(x|c)*u_x$$<br>其中$u_o$是我们已知的关于中心词c的上下文，而后半部分是一个期望，表示根据现有模型得出的与中心词c相关的上下文。这两者的差告诉我们优化的方向。</p>
-
+      </div>
       
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/CS224N/" rel="tag"># CS224N</a>
-          
-            <a href="/tags/Note/" rel="tag"># Note</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              <a href="/2019/03/23/RNG对阵IG第三场复盘/" rel="next" title="RNG对阵IG第三场复盘(2019.03.23)">
-                <i class="fa fa-chevron-left"></i> RNG对阵IG第三场复盘(2019.03.23)
+              <a href="/2019/03/23/RNG%E5%AF%B9%E9%98%B5IG%E7%AC%AC%E4%B8%89%E5%9C%BA%E5%A4%8D%E7%9B%98/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
               </a>
             
           </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2020-04-02 19:13:29
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/CS224N/" title="CS224N">
+                        <b>#</b> CS224N
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Note/" title="Note">
+                        <b>#</b> Note
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2021/10/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20PCA/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
             
           </div>
         </div>
       
-
-      
-      
-    </footer>
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
   </div>
-  
-  
-  
-  </article>
-
-
-  </div>
-
-
-          </div>
-          
-
-  
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%BA%E7%B1%BB%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%AF%8D%E4%B9%89"><span class="toc-text">人类语言与词义</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%8D%E4%B9%89%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">词义的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E8%AF%AD%E4%B9%89"><span class="toc-text">分布式语义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%8D%E5%90%91%E9%87%8F"><span class="toc-text">词向量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Word2Vec"><span class="toc-text">Word2Vec</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0"><span class="toc-text">目标函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E6%B5%8B%E5%87%BD%E6%95%B0"><span class="toc-text">预测函数</span></a></li></ol></li></ol></li></ol>
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">thylaco1eo</p>
-              <div class="site-description motion-element" itemprop="description"></div>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">7</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  
-                    
-                      <a href="/categories/">
-                    
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">4</span>
-                    <span class="site-state-item-name">分类</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                      <a href="/tags/">
-                    
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">10</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://github.com/thylaco1eo" title="GitHub &rarr; https://github.com/thylaco1eo" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-                </span>
-              
-            </div>
-          
-
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </div>
-
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#人类语言与词义"><span class="nav-number">1.</span> <span class="nav-text">人类语言与词义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#词义的定义"><span class="nav-number">1.1.</span> <span class="nav-text">词义的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式语义"><span class="nav-number">1.2.</span> <span class="nav-text">分布式语义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#词向量"><span class="nav-number">1.2.1.</span> <span class="nav-text">词向量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Word2Vec"><span class="nav-number">1.3.</span> <span class="nav-text">Word2Vec</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目标函数"><span class="nav-number">1.3.1.</span> <span class="nav-text">目标函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预测函数"><span class="nav-number">1.3.2.</span> <span class="nav-text">预测函数</span></a></li></ol></li></ol></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
   
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">thylaco1eo</span>
-
-  
-
-  
-</div>
-
-
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+<script src="/js/catalog.js"></script>
 
 
 
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.0</div>
-
-
-
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-user"></i>
-    </span>
-    <span class="site-uv" title="总访客量">
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-    </span>
-  
-
-  
-    <span class="post-meta-divider">|</span>
-  
-
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-eye"></i>
-    </span>
-    <span class="site-pv" title="总访问量">
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-    </span>
-  
-</div>
-
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
 
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
+      <div class="comments-container">
         
+
+
+
+
+
       </div>
-    
-
-    
-
-    
-
     
   </div>
 
+
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/thylaco1eo">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="facebook" href="">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="twitter" href="">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="wechat" href="">
+            <i class="iconfont icon-wechat"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="weibo" href="">
+            <i class="iconfont icon-weibo"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="rss" href="/atom.xml">
+            <i class="iconfont icon-rss"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
   
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/thylaco1eo">Copyright © thylaco1eo 2021</a>
+        
+    </div>
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
 
-<script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+      </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
 
 
-
+<script src="/js/backtotop.js"></script>
 
 
 
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
 
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
 
   
-  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+<script src="/js/colorscheme.js"></script>
 
+
+
+
+
+        
   
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + CS224N%3AWord_vectors + '&url=' + https%3A%2F%2Fthylaco1eo.github.io%2F2020%2F04%2F02%2FCS224N-Word-vectors%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://thylaco1eo.github.io/2020/04/02/CS224N-Word-vectors/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-
   
-
-
-  <script src="/js/utils.js?v=7.1.0"></script>
-
-  <script src="/js/motion.js?v=7.1.0"></script>
+<script src="/js/shares.js"></script>
 
 
 
-  
-  
-
-
-  <script src="/js/schemes/muse.js?v=7.1.0"></script>
-
-
-
-
-  
-  <script src="/js/scrollspy.js?v=7.1.0"></script>
-<script src="/js/post-details.js?v=7.1.0"></script>
-
-
-
-  
-
-
-  <script src="/js/next-boot.js?v=7.1.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+      </div>
+    </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config({{ JSON.stringify(config) }});
 </script>
 
 <script type="text/x-mathjax-config">
@@ -880,63 +560,9 @@
   });
 </script>
 
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" src="{{ src }}">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-
-  
-
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-</body>
+  </body>
 </html>

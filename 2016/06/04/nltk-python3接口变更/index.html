@@ -1,462 +1,154 @@
 <!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="thylaco1eo" />
+  <meta name="description" content="" />
+  
+  
+  <title>
+    
+      nltk python3接口变更 
+      
+      
+      |
+    
+     thylaco1eo site
+  </title>
+
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
 
 
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 
-
-
-
-
-
-
-
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  
+<script src="/js/fancybox.js"></script>
 
 
   
 
-
-<html class="theme-next mist use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
-
-<link rel="stylesheet" href="/css/main.css?v=7.1.0">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
-
-
-
-
-
-
-
-<script id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    version: '7.1.0',
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
-    back2top: true,
-    back2top_sidebar: false,
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
     }
-  };
-</script>
+  </script>
+
+<meta name="generator" content="Hexo 5.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
-  
-
-
-
-
-  <meta name="description" content="翻译自Nltk官方Wiki，原文链接点击 Nltk在python3的版本中更改了部分接口，并且现在Nltk要求所有的输入文件为unicode格式，并且也将只返回unicode格式的文件。之前有的类需要以bytestrings编码，现在你需要检查你的程序，因为bytestrings编码现在可能导致错误。 接口的改变： grammar:ContextFreeGrammar-&amp;gt;CFG,Weight">
-<meta name="keywords" content="nltk,python3">
-<meta property="og:type" content="article">
-<meta property="og:title" content="nltk python3接口变更">
-<meta property="og:url" content="https://thylaco1eo.github.io/2016/06/04/nltk-python3接口变更/index.html">
-<meta property="og:site_name" content="thylaco1eo site">
-<meta property="og:description" content="翻译自Nltk官方Wiki，原文链接点击 Nltk在python3的版本中更改了部分接口，并且现在Nltk要求所有的输入文件为unicode格式，并且也将只返回unicode格式的文件。之前有的类需要以bytestrings编码，现在你需要检查你的程序，因为bytestrings编码现在可能导致错误。 接口的改变： grammar:ContextFreeGrammar-&amp;gt;CFG,Weight">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2016-11-24T06:27:05.542Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="nltk python3接口变更">
-<meta name="twitter:description" content="翻译自Nltk官方Wiki，原文链接点击 Nltk在python3的版本中更改了部分接口，并且现在Nltk要求所有的输入文件为unicode格式，并且也将只返回unicode格式的文件。之前有的类需要以bytestrings编码，现在你需要检查你的程序，因为bytestrings编码现在可能导致错误。 接口的改变： grammar:ContextFreeGrammar-&amp;gt;CFG,Weight">
-
-
-
-
-
-  
-  
-  <link rel="canonical" href="https://thylaco1eo.github.io/2016/06/04/nltk-python3接口变更/">
-
-
-
-<script id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>nltk python3接口变更 | thylaco1eo site</title>
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .motion-element,
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
-
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-</head>
-
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  
-  
-    
-  
-
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">thylaco1eo site</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-    
+  <body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
       
-        <p class="site-subtitle">一个小程序猿向上爬</p>
+        <img src="/images/6839013.jpg" alt="">
       
-    
-    
+    </a>
+    <div class="nickname"><a href="/">thylaco1eo</a></div>
   </div>
-
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-
-
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
+  <div class="navbar">
+    <ul>
       
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
-
-    
-    
-    
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
       
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
-
-    
-    
-    
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
       
-    
-
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-categories">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
-
-  </li>
-
-      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
       
     </ul>
-  
-
-  
-    
-
-  
-
-  
-</nav>
-
-
-
-  
-
-
-
+  </div>
 </div>
-    </header>
-
-    
 
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-          <div id="content" class="content">
-            
+<script src="/js/activeNav.js"></script>
 
-  <div id="posts" class="posts-expand">
-    
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+<!-- LaTex Display -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+
+
 
   
 
   
-  
-  
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://thylaco1eo.github.io/2016/06/04/nltk-python3接口变更/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="thylaco1eo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="thylaco1eo site">
-    </span>
-
-    
-      <header class="post-header">
-
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">nltk python3接口变更</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2016-06-04 21:54:37
+        </span>
         
-        
-          <h1 class="post-title" itemprop="name headline">nltk python3接口变更
-
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
                 
-              
-
-              <time title="创建时间：2016-06-04 21:54:37" itemprop="dateCreated datePublished" datetime="2016-06-04T21:54:37+02:00">2016-06-04</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                <span class="span--tag">
+                  <a href="/tags/nltk/" title="nltk">
+                    <b>#</b> nltk
+                  </a>
                 </span>
                 
-                  <span class="post-meta-item-text">更新于</span>
+                <span class="span--tag">
+                  <a href="/tags/python3/" title="python3">
+                    <b>#</b> python3
+                  </a>
+                </span>
                 
-                <time title="修改时间：2016-11-24 07:27:05" itemprop="dateModified" datetime="2016-11-24T07:27:05+01:00">2016-11-24</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Nltk/" itemprop="url" rel="index"><span itemprop="name">Nltk</span></a></span>
-
-                
-                
-              
-            </span>
           
-
-          
-            
-            
-          
-
-          
-          
-
-          
-            <span class="post-meta-divider">|</span>
-            <span class="post-meta-item-icon">
-            <i class="fa fa-eye"></i>
-             阅读次数： 
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>翻译自Nltk官方Wiki，原文链接<a href="https://github.com/nltk/nltk/wiki/Porting-your-code-to-NLTK-3.0" target="_blank" rel="noopener">点击</a></p>
-<p>Nltk在python3的版本中更改了部分接口，并且现在Nltk要求所有的输入文件为unicode格式，并且也将只返回unicode格式的文件。之前有的类需要以bytestrings编码，现在你需要检查你的程序，因为bytestrings编码现在可能导致错误。</p>
-<h4 id="接口的改变："><a href="#接口的改变：" class="headerlink" title="接口的改变："></a>接口的改变：</h4><ul>
-<li><code>grammar</code>:<code>ContextFreeGrammar</code>-&gt;<code>CFG</code>,<code>WeightGrammar</code>-&gt;<code>PCFG</code>,<br><code>StatisticalDependencyGrammar</code>-&gt;<code>ProbabilisticDependencyGrammar</code>,<br><code>WeightedProduction</code>-&gt;<code>ProbailisticProduction</code>  </li>
-<li><code>draw.tree</code>:<code>TreeSegmentWidget.node()</code>-&gt;<code>TreeSegmentWidget.label()</code>,<br><code>TreeSegmentWidget.set_node()</code>-&gt;<code>TreeSegmentWidget.set_label()</code></li>
-<li>parsers:<code>nbset_parse()</code>-&gt;<code>parse()</code></li>
-<li><code>ccg.parse.chart</code>:<code>EdgeI.next()</code>-&gt;<code>EdgeI.nextsym</code></li>
-<li>Chunk parser:<code>top_node</code>-&gt;<code>root_label</code>,<code>chunk_node</code>-&gt;<code>chunk_label</code></li>
-<li>WordNet特性现在转变为方法，比如：<code>Synset.definition</code>-&gt;<code>Synset.definition()</code></li>
-<li>sem.relextract:<code>mk_pairs()</code>-&gt;<code>_tree2semi_rel()</code>,<code>mk_reldicts()</code>-&gt;<code>semi_rel2reldict()</code>,<br><code>show_clause()</code>-&gt;<code>clause()</code>,<code>show_raw_rtuple()</code>-&gt;<code>rtuple()</code><a id="more"></a></li>
+      </div>
+      <div class="markdown-body">
+        </li>
 <li><code>corpusname.tagged_words(simplify_tags=True)</code>-&gt;<code>corpusname.tagged_words(tagset=&#39;universal&#39;)</code></li>
 <li><code>util.clean_html()</code>-&gt;<code>BeautifulSoup.get_text()</code>。<code>clean_html()</code>已经被取消，建议安装使用BeautifulSoup或者其他html解析器。</li>
 <li><code>util.ibigrams()</code>-&gt;<code>util.bigrams()</code></li>
@@ -498,16 +190,16 @@
 <li>移除<code>ends()</code>,<code>r()</code>,<code>setto()</code></li>
 </ul>
 <h4 id="移除的模块，类和函数："><a href="#移除的模块，类和函数：" class="headerlink" title="移除的模块，类和函数："></a>移除的模块，类和函数：</h4><ul>
-<li><code>classify.svm</code>已经被移除，需要支持向量机(SVMs)的分类请使用<code>classify.scikitlearn</code>或者直接使用<code>scikit-learn</code>，参见 <a href="https://github.com/nltk/nltk/issues/450" target="_blank" rel="noopener">https://github.com/nltk/nltk/issues/450</a></li>
-<li><code>probability.GoodTuringProbDist</code>已经被移除。参见 <a href="https://github.com/nltk/nltk/issues/381。" target="_blank" rel="noopener">https://github.com/nltk/nltk/issues/381。</a></li>
-<li><code>HiddenMarkovModelTaggerTransformI</code>及其所包含的类被移除。参见 <a href="https://github.com/nltk/nltk/issues/374" target="_blank" rel="noopener">https://github.com/nltk/nltk/issues/374</a></li>
-<li><code>classify.maxent</code>不再支持<code>scipy.maxentropy</code>所支持的算法。参见 <a href="https://github.com/nltk/nltk/issues/321" target="_blank" rel="noopener">https://github.com/nltk/nltk/issues/321</a></li>
-<li><code>misc.babelfish</code>已经被移除。参见 <a href="https://github.com/nltk/nltk/issues/265" target="_blank" rel="noopener">https://github.com/nltk/nltk/issues/265</a></li>
-<li><code>sourcedstring</code>已经被移除。参见 <a href="https://github.com/nltk/nltk/issues/322" target="_blank" rel="noopener">https://github.com/nltk/nltk/issues/322</a></li>
-<li><code>yamltags</code>已经被移除。现在更推荐使用JSON。参见 <a href="https://github.com/nltk/nltk/issues/540" target="_blank" rel="noopener">https://github.com/nltk/nltk/issues/540</a></li>
-<li><code>mallet</code>已经被移除，包括<code>tag.crf</code>模块。参见 <a href="https://github.com/nltk/nltk/issues/104" target="_blank" rel="noopener">https://github.com/nltk/nltk/issues/104</a></li>
-<li><code>tag.simplify</code>已经被移除。参见 <a href="https://github.com/nltk/nltk/issues/483" target="_blank" rel="noopener">https://github.com/nltk/nltk/issues/483</a></li>
-<li><code>corpus.reader.wordnet._lcs_by_depth</code>被移除。参见 <a href="https://github.com/nltk/nltk/issues/422" target="_blank" rel="noopener">https://github.com/nltk/nltk/issues/422</a></li>
+<li><code>classify.svm</code>已经被移除，需要支持向量机(SVMs)的分类请使用<code>classify.scikitlearn</code>或者直接使用<code>scikit-learn</code>，参见 <a target="_blank" rel="noopener" href="https://github.com/nltk/nltk/issues/450">https://github.com/nltk/nltk/issues/450</a></li>
+<li><code>probability.GoodTuringProbDist</code>已经被移除。参见 <a target="_blank" rel="noopener" href="https://github.com/nltk/nltk/issues/381。">https://github.com/nltk/nltk/issues/381。</a></li>
+<li><code>HiddenMarkovModelTaggerTransformI</code>及其所包含的类被移除。参见 <a target="_blank" rel="noopener" href="https://github.com/nltk/nltk/issues/374">https://github.com/nltk/nltk/issues/374</a></li>
+<li><code>classify.maxent</code>不再支持<code>scipy.maxentropy</code>所支持的算法。参见 <a target="_blank" rel="noopener" href="https://github.com/nltk/nltk/issues/321">https://github.com/nltk/nltk/issues/321</a></li>
+<li><code>misc.babelfish</code>已经被移除。参见 <a target="_blank" rel="noopener" href="https://github.com/nltk/nltk/issues/265">https://github.com/nltk/nltk/issues/265</a></li>
+<li><code>sourcedstring</code>已经被移除。参见 <a target="_blank" rel="noopener" href="https://github.com/nltk/nltk/issues/322">https://github.com/nltk/nltk/issues/322</a></li>
+<li><code>yamltags</code>已经被移除。现在更推荐使用JSON。参见 <a target="_blank" rel="noopener" href="https://github.com/nltk/nltk/issues/540">https://github.com/nltk/nltk/issues/540</a></li>
+<li><code>mallet</code>已经被移除，包括<code>tag.crf</code>模块。参见 <a target="_blank" rel="noopener" href="https://github.com/nltk/nltk/issues/104">https://github.com/nltk/nltk/issues/104</a></li>
+<li><code>tag.simplify</code>已经被移除。参见 <a target="_blank" rel="noopener" href="https://github.com/nltk/nltk/issues/483">https://github.com/nltk/nltk/issues/483</a></li>
+<li><code>corpus.reader.wordnet._lcs_by_depth</code>被移除。参见 <a target="_blank" rel="noopener" href="https://github.com/nltk/nltk/issues/422">https://github.com/nltk/nltk/issues/422</a></li>
 </ul>
 <h4 id="其他的调整："><a href="#其他的调整：" class="headerlink" title="其他的调整："></a>其他的调整：</h4><ul>
 <li><code>probability.ConditionalProbDist.default_factory</code>现在继承自<code>dict</code>而不是<code>defaultdict</code></li>
@@ -517,7 +209,7 @@
 <li><code>tag.senna.POSTagger</code>-&gt;<code>tag.SennaTagger</code></li>
 <li><code>tag.senna.CHKTagger</code>-&gt;<code>tag.SennaChunkTagger</code></li>
 </ul>
-<h4 id="显示调整："><a href="#显示调整：" class="headerlink" title="显示调整："></a>显示调整：</h4><p>3.0.2版本之后，参见 <a href="https://github.com/nltk/nltk/issues/804" target="_blank" rel="noopener">https://github.com/nltk/nltk/issues/804</a></p>
+<h4 id="显示调整："><a href="#显示调整：" class="headerlink" title="显示调整："></a>显示调整：</h4><p>3.0.2版本之后，参见 <a target="_blank" rel="noopener" href="https://github.com/nltk/nltk/issues/804">https://github.com/nltk/nltk/issues/804</a></p>
 <ul>
 <li><code>classify.decisiontree.DecisionTreeClassifier.pp</code>-&gt;<code>pretty_format</code></li>
 <li><code>metrics.confusionmatrix.ConfusionMatrix.pp</code>-&gt;<code>pretty_format</code></li>
@@ -530,408 +222,390 @@
 <li><code>Tree.pprint_latex_qtree</code>-&gt;<code>pformat_latex_qtree</code></li>
 </ul>
 <p><strong><em>有任何的意见或建议欢迎留言</em></strong></p>
-
+      </div>
       
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/nltk/" rel="tag"># nltk</a>
-          
-            <a href="/tags/python3/" rel="tag"># python3</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
           </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2016-06-04 21:54:37
+            </span>
             
-              <a href="/2016/07/21/中文分词入门推荐-漫话中文分词算法/" rel="prev" title="中文分词入门推荐-漫话中文分词算法">
-                中文分词入门推荐-漫话中文分词算法 <i class="fa fa-chevron-right"></i>
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/nltk/" title="nltk">
+                        <b>#</b> nltk
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/python3/" title="python3">
+                        <b>#</b> python3
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2016/07/21/%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E5%85%A5%E9%97%A8%E6%8E%A8%E8%8D%90-%E6%BC%AB%E8%AF%9D%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E7%AE%97%E6%B3%95/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
               </a>
             
           </div>
         </div>
       
-
-      
-      
-    </footer>
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
   </div>
-  
-  
-  
-  </article>
-
-
-  </div>
-
-
-          </div>
-          
-
-  
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E7%9A%84%E6%94%B9%E5%8F%98%EF%BC%9A"><span class="toc-text">接口的改变：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%EF%BC%9A"><span class="toc-text">通过字符串创建对象：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%A1%B9%E7%9B%AE%E4%B8%8A%E7%9A%84%E6%93%8D%E4%BD%9C%EF%BC%9A"><span class="toc-text">其他项目上的操作：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#probability-FreqDist%E4%B8%AD%E7%9A%84%E8%B0%83%E6%95%B4%EF%BC%9A"><span class="toc-text">probability.FreqDist中的调整：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E8%AF%8D%E7%AE%97%E6%B3%95%E8%B0%83%E6%95%B4"><span class="toc-text">分词算法调整;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A7%BB%E9%99%A4%E7%9A%84%E6%A8%A1%E5%9D%97%EF%BC%8C%E7%B1%BB%E5%92%8C%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="toc-text">移除的模块，类和函数：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E7%9A%84%E8%B0%83%E6%95%B4%EF%BC%9A"><span class="toc-text">其他的调整：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E8%B0%83%E6%95%B4%EF%BC%9A"><span class="toc-text">显示调整：</span></a></li></ol>
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">thylaco1eo</p>
-              <div class="site-description motion-element" itemprop="description"></div>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">7</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  
-                    
-                      <a href="/categories/">
-                    
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">4</span>
-                    <span class="site-state-item-name">分类</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                      <a href="/tags/">
-                    
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">10</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://github.com/thylaco1eo" title="GitHub &rarr; https://github.com/thylaco1eo" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-                </span>
-              
-            </div>
-          
-
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </div>
-
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#接口的改变："><span class="nav-number">1.</span> <span class="nav-text">接口的改变：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过字符串创建对象："><span class="nav-number">2.</span> <span class="nav-text">通过字符串创建对象：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他项目上的操作："><span class="nav-number">3.</span> <span class="nav-text">其他项目上的操作：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#probability-FreqDist中的调整："><span class="nav-number">4.</span> <span class="nav-text">probability.FreqDist中的调整：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分词算法调整"><span class="nav-number">5.</span> <span class="nav-text">分词算法调整;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#移除的模块，类和函数："><span class="nav-number">6.</span> <span class="nav-text">移除的模块，类和函数：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他的调整："><span class="nav-number">7.</span> <span class="nav-text">其他的调整：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显示调整："><span class="nav-number">8.</span> <span class="nav-text">显示调整：</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
   
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">thylaco1eo</span>
-
-  
-
-  
-</div>
-
-
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+<script src="/js/catalog.js"></script>
 
 
 
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.0</div>
-
-
-
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-user"></i>
-    </span>
-    <span class="site-uv" title="总访客量">
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-    </span>
-  
-
-  
-    <span class="post-meta-divider">|</span>
-  
-
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-eye"></i>
-    </span>
-    <span class="site-pv" title="总访问量">
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-    </span>
-  
-</div>
-
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
 
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
+      <div class="comments-container">
         
+
+
+
+
+
       </div>
-    
-
-    
-
-    
-
     
   </div>
 
+
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/thylaco1eo">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="facebook" href="">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="twitter" href="">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="wechat" href="">
+            <i class="iconfont icon-wechat"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="weibo" href="">
+            <i class="iconfont icon-weibo"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="rss" href="/atom.xml">
+            <i class="iconfont icon-rss"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
   
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/thylaco1eo">Copyright © thylaco1eo 2021</a>
+        
+    </div>
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
 
-<script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+      </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
 
 
-
+<script src="/js/backtotop.js"></script>
 
 
 
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
 
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
 
   
-  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+<script src="/js/colorscheme.js"></script>
 
+
+
+
+
+        
   
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + nltk%20python3%E6%8E%A5%E5%8F%A3%E5%8F%98%E6%9B%B4 + '&url=' + https%3A%2F%2Fthylaco1eo.github.io%2F2016%2F06%2F04%2Fnltk-python3%25E6%258E%25A5%25E5%258F%25A3%25E5%258F%2598%25E6%259B%25B4%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://thylaco1eo.github.io/2016/06/04/nltk-python3%E6%8E%A5%E5%8F%A3%E5%8F%98%E6%9B%B4/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-
   
-
-
-  <script src="/js/utils.js?v=7.1.0"></script>
-
-  <script src="/js/motion.js?v=7.1.0"></script>
+<script src="/js/shares.js"></script>
 
 
 
-  
-  
-
-
-  <script src="/js/schemes/muse.js?v=7.1.0"></script>
-
-
-
-
-  
-  <script src="/js/scrollspy.js?v=7.1.0"></script>
-<script src="/js/post-details.js?v=7.1.0"></script>
-
-
-
-  
-
-
-  <script src="/js/next-boot.js?v=7.1.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+      </div>
+    </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config({{ JSON.stringify(config) }});
 </script>
 
 <script type="text/x-mathjax-config">
@@ -943,63 +617,9 @@
   });
 </script>
 
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" src="{{ src }}">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-
-  
-
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-</body>
+  </body>
 </html>

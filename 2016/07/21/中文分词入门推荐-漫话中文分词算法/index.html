@@ -1,444 +1,157 @@
 <!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="thylaco1eo" />
+  <meta name="description" content="" />
+  
+  
+  <title>
+    
+      中文分词入门推荐-漫话中文分词算法 
+      
+      
+      |
+    
+     thylaco1eo site
+  </title>
+
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
 
 
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 
-
-
-
-
-
-
-
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  
+<script src="/js/fancybox.js"></script>
 
 
   
 
-
-<html class="theme-next mist use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
-
-<link rel="stylesheet" href="/css/main.css?v=7.1.0">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
-
-
-
-
-
-
-
-<script id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    version: '7.1.0',
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
-    back2top: true,
-    back2top_sidebar: false,
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
     }
-  };
-</script>
+  </script>
+
+<meta name="generator" content="Hexo 5.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
-  
-
-
-
-
-  <meta name="description" content="讲道理的话这是一篇极端挖坟的文章。这两篇博客早在2011年就被Matrix67发表在了他的博客上。我也是最近才有幸读到这两篇文章。Matrix67在这两篇文章中不仅展现了他作为理科生的严谨思路，更加展现了转文之后扎实的语言功底。 　　在上篇中，作者主要介绍了中文分词的几种主要的方法。从最大匹配法最少词数法再到识别专有名词和人名的算法，作者通过大量的例子和正反说明使得整个证明过程非常的清晰明了，">
-<meta name="keywords" content="中文分词,NLP">
-<meta property="og:type" content="article">
-<meta property="og:title" content="中文分词入门推荐-漫话中文分词算法">
-<meta property="og:url" content="https://thylaco1eo.github.io/2016/07/21/中文分词入门推荐-漫话中文分词算法/index.html">
-<meta property="og:site_name" content="thylaco1eo site">
-<meta property="og:description" content="讲道理的话这是一篇极端挖坟的文章。这两篇博客早在2011年就被Matrix67发表在了他的博客上。我也是最近才有幸读到这两篇文章。Matrix67在这两篇文章中不仅展现了他作为理科生的严谨思路，更加展现了转文之后扎实的语言功底。 　　在上篇中，作者主要介绍了中文分词的几种主要的方法。从最大匹配法最少词数法再到识别专有名词和人名的算法，作者通过大量的例子和正反说明使得整个证明过程非常的清晰明了，">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2016-07-21T09:17:57.534Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="中文分词入门推荐-漫话中文分词算法">
-<meta name="twitter:description" content="讲道理的话这是一篇极端挖坟的文章。这两篇博客早在2011年就被Matrix67发表在了他的博客上。我也是最近才有幸读到这两篇文章。Matrix67在这两篇文章中不仅展现了他作为理科生的严谨思路，更加展现了转文之后扎实的语言功底。 　　在上篇中，作者主要介绍了中文分词的几种主要的方法。从最大匹配法最少词数法再到识别专有名词和人名的算法，作者通过大量的例子和正反说明使得整个证明过程非常的清晰明了，">
-
-
-
-
-
-  
-  
-  <link rel="canonical" href="https://thylaco1eo.github.io/2016/07/21/中文分词入门推荐-漫话中文分词算法/">
-
-
-
-<script id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>中文分词入门推荐-漫话中文分词算法 | thylaco1eo site</title>
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .motion-element,
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
-
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-</head>
-
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  
-  
-    
-  
-
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">thylaco1eo site</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-    
+  <body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
       
-        <p class="site-subtitle">一个小程序猿向上爬</p>
+        <img src="/images/6839013.jpg" alt="">
       
-    
-    
+    </a>
+    <div class="nickname"><a href="/">thylaco1eo</a></div>
   </div>
-
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-
-
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
+  <div class="navbar">
+    <ul>
       
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
-
-    
-    
-    
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
       
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
-
-    
-    
-    
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
       
-    
-
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-categories">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
-
-  </li>
-
-      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
       
     </ul>
-  
-
-  
-    
-
-  
-
-  
-</nav>
-
-
-
-  
-
-
-
+  </div>
 </div>
-    </header>
-
-    
 
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-          <div id="content" class="content">
-            
+<script src="/js/activeNav.js"></script>
 
-  <div id="posts" class="posts-expand">
-    
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+<!-- LaTex Display -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+
+
 
   
 
   
-  
-  
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://thylaco1eo.github.io/2016/07/21/中文分词入门推荐-漫话中文分词算法/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="thylaco1eo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="thylaco1eo site">
-    </span>
-
-    
-      <header class="post-header">
-
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">中文分词入门推荐-漫话中文分词算法</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2016-07-21 16:08:57
+        </span>
         
-        
-          <h1 class="post-title" itemprop="name headline">中文分词入门推荐-漫话中文分词算法
-
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/NLP/" title="NLP">
+                    <b>#</b> NLP
+                  </a>
+                </span>
+                
+                <span class="span--tag">
+                  <a href="/tags/%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D/" title="中文分词">
+                    <b>#</b> 中文分词
+                  </a>
+                </span>
+                
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2016-07-21 16:08:57 / 修改时间：11:17:57" itemprop="dateCreated datePublished" datetime="2016-07-21T16:08:57+02:00">2016-07-21</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-            <span class="post-meta-divider">|</span>
-            <span class="post-meta-item-icon">
-            <i class="fa fa-eye"></i>
-             阅读次数： 
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>　　讲道理的话这是一篇极端挖坟的文章。这两篇博客早在2011年就被<a href="http://www.matrix67.com/blog/" target="_blank" rel="noopener">Matrix67</a>发表在了他的博客上。我也是最近才有幸读到这两篇文章。Matrix67在这两篇文章中不仅展现了他作为理科生的严谨思路，更加展现了转文之后扎实的语言功底。</p>
+      </div>
+      <div class="markdown-body">
+        <p>　　讲道理的话这是一篇极端挖坟的文章。这两篇博客早在2011年就被<a target="_blank" rel="noopener" href="http://www.matrix67.com/blog/">Matrix67</a>发表在了他的博客上。我也是最近才有幸读到这两篇文章。Matrix67在这两篇文章中不仅展现了他作为理科生的严谨思路，更加展现了转文之后扎实的语言功底。</p>
 <p>　　在上篇中，作者主要介绍了中文分词的几种主要的方法。从最大匹配法最少词数法再到识别专有名词和人名的算法，作者通过大量的例子和正反说明使得整个证明过程非常的清晰明了，不会让读者有阅读上的压力。作者在这两篇文章中都尽可能的避免了公式的推导使得整个讲解过程显得非常连贯。应该说上篇是一片非常适合初学者，甚至是没有一点自然语言处理基础的人来阅读的。</p>
 <p>　　在下篇中，作者主要介绍了句法结构和语义结构相关的知识。在这篇文章中，作者拿出了很大的篇幅介绍了一个重要的文法———“上下文无关文法”。由这个文法再引出中文的多种语义结构就不显得非常的难以理解了。其中，多张图片辅助介绍也使得读者理解起来非常的清晰。</p>
-<p>　　在这两篇文章中作者的风趣幽默也展现无遗，这里仅仅摘录两个小段供大家欣赏。更多的内容还请大家移步原作者的博客细细品读吧。<br><a href="http://www.matrix67.com/blog/archives/4212" target="_blank" rel="noopener">漫话中文自动分词和语义识别（上）：中文分词算法</a> <a href="http://www.matrix67.com/blog/archives/4870" target="_blank" rel="noopener">漫话中文自动分词和语义识别（下）：句法结构和语义结构</a></p>
+<p>　　在这两篇文章中作者的风趣幽默也展现无遗，这里仅仅摘录两个小段供大家欣赏。更多的内容还请大家移步原作者的博客细细品读吧。<br><a target="_blank" rel="noopener" href="http://www.matrix67.com/blog/archives/4212">漫话中文自动分词和语义识别（上）：中文分词算法</a> <a target="_blank" rel="noopener" href="http://www.matrix67.com/blog/archives/4870">漫话中文自动分词和语义识别（下）：句法结构和语义结构</a></p>
 <blockquote>
 <p>很多反映时代性的名字也是本身就成词的，例如“建国”、“建设”、“国庆”、“跃进”等等。更讨厌的就是那些整个名字本身就是常用词的人了，他们会彻底打乱之前的各种模型。如果分词程序也有智能的话，他一定会把所有叫“高峰”、“汪洋”的人拖出去斩了；要是听说了有人居然敢叫“令计划”，估计直接就崩溃了。</p>
 </blockquote>
@@ -447,385 +160,380 @@
 </blockquote>
 <p><strong><em>有任何的意见或建议欢迎留言</em></strong></p>
 
+      </div>
       
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/中文分词/" rel="tag"># 中文分词</a>
-          
-            <a href="/tags/NLP/" rel="tag"># NLP</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              <a href="/2016/06/04/nltk-python3接口变更/" rel="next" title="nltk python3接口变更">
-                <i class="fa fa-chevron-left"></i> nltk python3接口变更
+              <a href="/2016/06/04/nltk-python3%E6%8E%A5%E5%8F%A3%E5%8F%98%E6%9B%B4/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
               </a>
             
           </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2016-07-21 16:08:57
+            </span>
             
-              <a href="/2016/09/12/Tensorflow笔记：中文数据处理/" rel="prev" title="Tensorflow笔记：中文数据处理">
-                Tensorflow笔记：中文数据处理 <i class="fa fa-chevron-right"></i>
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/NLP/" title="NLP">
+                        <b>#</b> NLP
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D/" title="中文分词">
+                        <b>#</b> 中文分词
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2016/09/12/Tensorflow%E7%AC%94%E8%AE%B0%EF%BC%9A%E4%B8%AD%E6%96%87%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
               </a>
             
           </div>
         </div>
       
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-  </div>
-
-
-          </div>
-          
-
-  
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
+    
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+      </div>
+    
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
 
+        <div class="footer">
+  <div class="social">
+    <ul>
       
-
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/thylaco1eo">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
       
-
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">thylaco1eo</p>
-              <div class="site-description motion-element" itemprop="description"></div>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">7</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  
-                    
-                      <a href="/categories/">
-                    
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">4</span>
-                    <span class="site-state-item-name">分类</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                      <a href="/tags/">
-                    
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">10</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://github.com/thylaco1eo" title="GitHub &rarr; https://github.com/thylaco1eo" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-                </span>
-              
-            </div>
-          
-
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </div>
-
+        <li>
+          <a title="email" href="">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
       
-
+        <li>
+          <a title="facebook" href="">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        </li>
       
-
-    </div>
-  </aside>
+        <li>
+          <a title="twitter" href="">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="wechat" href="">
+            <i class="iconfont icon-wechat"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="weibo" href="">
+            <i class="iconfont icon-weibo"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="rss" href="/atom.xml">
+            <i class="iconfont icon-rss"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
   
-
-
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/thylaco1eo">Copyright © thylaco1eo 2021</a>
         
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">thylaco1eo</span>
-
+    </div>
   
-
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
   
 </div>
 
+      </div>
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.0</div>
-
-
-
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-user"></i>
-    </span>
-    <span class="site-uv" title="总访客量">
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-    </span>
-  
-
-  
-    <span class="post-meta-divider">|</span>
-  
-
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-eye"></i>
-    </span>
-    <span class="site-pv" title="总访问量">
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-    </span>
-  
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
 </div>
 
 
+<script src="/js/backtotop.js"></script>
 
 
 
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
 
 
 
 
         
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-    
-
-    
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
   </div>
 
   
-
-<script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+<script src="/js/colorscheme.js"></script>
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
   
-  <script src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-
-  
-
-
-  <script src="/js/utils.js?v=7.1.0"></script>
-
-  <script src="/js/motion.js?v=7.1.0"></script>
-
-
-
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E5%85%A5%E9%97%A8%E6%8E%A8%E8%8D%90-%E6%BC%AB%E8%AF%9D%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E7%AE%97%E6%B3%95 + '&url=' + https%3A%2F%2Fthylaco1eo.github.io%2F2016%2F07%2F21%2F%25E4%25B8%25AD%25E6%2596%2587%25E5%2588%2586%25E8%25AF%258D%25E5%2585%25A5%25E9%2597%25A8%25E6%258E%25A8%25E8%258D%2590-%25E6%25BC%25AB%25E8%25AF%259D%25E4%25B8%25AD%25E6%2596%2587%25E5%2588%2586%25E8%25AF%258D%25E7%25AE%2597%25E6%25B3%2595%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://thylaco1eo.github.io/2016/07/21/%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E5%85%A5%E9%97%A8%E6%8E%A8%E8%8D%90-%E6%BC%AB%E8%AF%9D%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E7%AE%97%E6%B3%95/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
-
-
-  <script src="/js/schemes/muse.js?v=7.1.0"></script>
-
+<script src="/js/shares.js"></script>
 
 
 
-  
-  <script src="/js/scrollspy.js?v=7.1.0"></script>
-<script src="/js/post-details.js?v=7.1.0"></script>
-
-
-
-  
-
-
-  <script src="/js/next-boot.js?v=7.1.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+      </div>
+    </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config({{ JSON.stringify(config) }});
 </script>
 
 <script type="text/x-mathjax-config">
@@ -837,63 +545,9 @@
   });
 </script>
 
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" src="{{ src }}">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-
-  
-
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-</body>
+  </body>
 </html>
