@@ -11,7 +11,7 @@
   
   <title>
     
-      机器学习笔记：Clustering 
+      机器学习笔记 PCA 
       
       
       |
@@ -122,57 +122,22 @@ MathJax = {
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">机器学习笔记：Clustering</div>
+      <div class="post-title">机器学习笔记 PCA</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime" title="更新时间"></i>
-          2021-10-03 12:43:24
+          2021-10-12 15:39:43
         </span>
         
-              <span class="post-tags">
-                <i class="iconfont icon-tags" title="标签"></i>
-                
-                <span class="span--tag">
-                  <a href="/tags/Clustering/" title="Clustering">
-                    <b>#</b> Clustering
-                  </a>
-                </span>
-                
-              </span>
-          
       </div>
       <div class="markdown-body">
-        </li>
-</ul>
-<h2 id="Mean-shift"><a href="#Mean-shift" class="headerlink" title="Mean-shift"></a>Mean-shift</h2><p>Mean-shift一种流行的图像分割技术，它可以在预先不设定分类数量的情况下对图片进行有效的分割。这种技术通过密度导向将导向同一点的数据分为同一类。<br>优点：</p>
-<ul>
-<li>具有很强的泛用性，支持几乎所有的图像数据，甚至包括一些非图像数据。</li>
-<li>不受分类数量和形状的限制，不用提前设定类数。</li>
-<li>对于异常点也可以完成分类。</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>必须事先设定窗口的大小，也就是说必须事先规定什么叫做“近”。</li>
-<li>对于高维数据不适用</li>
-</ul>
-<p>算法流程如下：</p>
-<ul>
-<li>首先选定窗口函数和窗口大小</li>
-<li>对于每一个数据点：<ol>
-<li>计算以它为中心的窗口</li>
-<li>计算窗口中数据的均值点</li>
-<li>将窗口移植新的均值点</li>
-</ol>
-</li>
-</ul>
-<h2 id="Hierarchical-Clustering"><a href="#Hierarchical-Clustering" class="headerlink" title="Hierarchical Clustering"></a>Hierarchical Clustering</h2><p>Hierarchical Clustering是一种基于数据距离构建聚类层级结构的技术。它分为“自顶向下”和“自底向上”两大类。其中“自顶向下”指的是一开始将所有的数据认为是同一类，而后在不断的迭代中将数据进行分类，从而构建聚类层级结构。而“自底向上”是完全相反的情况。</p>
-<p>Hierarchical Clustering通过两种函数确定数据间的距离和类间的距离。其中数据间的距离通过距离函数决定，常见的距离函数包括欧几里得距离(Euclidean distance)，曼哈顿距离(Manhattan distance)等， 在处理文本数据时，汉明距离(Hamming distance)也是常用的函数之一。类间距离的判断则通过最大连接(全连接)，最小链接(单链接)，平均链接等方式来确定。其中最大连接是指类间距离等于分属两类的数据点之间最大的距离。最小链接和平均链接可以以此类推。</p>
+        
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2020/04/02/CS224N-Word-vectors/" target="_self">
+              <a href="/2021/10/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%E8%81%9A%E7%B1%BB/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -181,20 +146,9 @@ MathJax = {
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime" title="更新时间"></i>
-              2021-10-03 12:43:24
+              2021-10-12 15:39:43
             </span>
             
-                  <span class="post-tags">
-                    <i class="iconfont icon-tags" title="标签"></i>
-                    
-                    <span class="span--tag">
-                      <a href="/tags/Clustering/" title="Clustering">
-                        <b>#</b> Clustering
-                      </a>
-                    </span>
-                    
-                  </span>
-              
           </div>
           <div class="post-foot-prev">
             
@@ -203,21 +157,6 @@ MathJax = {
       
     </div>
     
-  <div id="btn-catalog" class="btn-catalog">
-    <i class="iconfont icon-catalog"></i>
-  </div>
-  <div class="post-catalog hidden" id="catalog">
-    <div class="title">目录</div>
-    <div class="catalog-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#K-means"><span class="toc-text">K-means</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mean-shift"><span class="toc-text">Mean-shift</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hierarchical-Clustering"><span class="toc-text">Hierarchical Clustering</span></a></li></ol>
-    </div>
-  </div>
-
-  
-<script src="/js/catalog.js"></script>
-
-
-
 
     
       <div class="comments-container">
@@ -524,12 +463,12 @@ MathJax = {
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AClustering + '&url=' + https%3A%2F%2Fthylaco1eo.github.io%2F2021%2F10%2F03%2F%25E6%259C%25BA%25E5%2599%25A8%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%2520PCA%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20PCA + '&url=' + https%3A%2F%2Fthylaco1eo.github.io%2F2021%2F10%2F12%2F%25E6%259C%25BA%25E5%2599%25A8%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0-PCA%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://thylaco1eo.github.io/2021/10/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20PCA/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://thylaco1eo.github.io/2021/10/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-PCA/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         
