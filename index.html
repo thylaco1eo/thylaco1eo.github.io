@@ -132,11 +132,16 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/thylaco1eo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;thylaco1eo" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
 
 
 
@@ -170,7 +175,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://thylaco1eo.github.io/2021/10/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-PCA/">
+    <link itemprop="mainEntityOfPage" href="https://thylaco1eo.github.io/2022/12/07/NLP-note-BERT/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -188,7 +193,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/10/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-PCA/" class="post-title-link" itemprop="url">机器学习笔记 PCA</a>
+          <a href="/2022/12/07/NLP-note-BERT/" class="post-title-link" itemprop="url">NLP_note:BERT</a>
         </h2>
 
         <div class="post-meta-container">
@@ -199,23 +204,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-10-12 15:39:43" itemprop="dateCreated datePublished" datetime="2021-10-12T15:39:43+02:00">2021-10-12</time>
+      <time title="创建时间：2022-12-07 00:56:32" itemprop="dateCreated datePublished" datetime="2022-12-07T00:56:32+01:00">2022-12-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-17 21:51:39" itemprop="dateModified" datetime="2022-05-17T21:51:39+02:00">2022-05-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a>
-        </span>
+      <time title="修改时间：2022-12-08 02:10:16" itemprop="dateModified" datetime="2022-12-08T02:10:16+01:00">2022-12-08</time>
     </span>
 
   
@@ -228,8 +224,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>PCA(Principal component analysis)是一种数据处理方法，用于对大量数据进行简化，尝试通过低维数据的线性组合来逼近高维数据。</p>
-
+          <p>NLP领域中在BERT之前一直没有一个网络模型可以在一个大的数据集上训练之后解决多种不同的NLP任务。BERT的出现使得人们可以在一个大的数据集上做训练然后应用在很多NLP任务上。</p>
+<p>BERT被设计用未标注的数据来训练深度双向表示，这个双向表示结合了左右的上下文信息。BERT模型可以通过仅调整输出层来适应不同的NLP任务。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/12/07/NLP-note-BERT/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -291,7 +295,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2021-10-20 22:33:21" itemprop="dateModified" datetime="2021-10-20T22:33:21+02:00">2021-10-20</time>
+      <time title="修改时间：2022-12-08 02:04:48" itemprop="dateModified" datetime="2022-12-08T02:04:48+01:00">2022-12-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -313,38 +317,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>聚类是一种无监督学习算法。聚类的本质就是将相似的数据进行分组。主要方法包括： K-means，Mean-shift，Hierarchical cluster，SLICS, QUAD tree等等。</p>
-<h2 id="K-means"><a href="#K-means" class="headerlink" title="K-means"></a>K-means</h2><p>K-means方法通过一种方法确定K个中心点(<em><strong>centroids</strong></em>)进而形成K个群，然后将所有数据点分配到离它最近的群中。这里的中心点是数学意义上的均值点，不一定要求这个点在数据中存在。<br>算法的流程如下：</p>
-<ul>
-<li>随机选择K个中心点</li>
-<li>将每一个数据点分配到离它最近的的中心点所属的群。</li>
-<li>对于每一个群分别计算新的中心点。</li>
-<li>如果数据点的分配有变化，则重新执行步骤2，直到数据点的分配不再变化，此时得出的就是K个结果群。</li>
-</ul>
-<h2 id="Mean-shift"><a href="#Mean-shift" class="headerlink" title="Mean-shift"></a>Mean-shift</h2><p>Mean-shift一种流行的图像分割技术，它可以在预先不设定分类数量的情况下对图片进行有效的分割。这种技术通过密度导向将导向同一点的数据分为同一类。<br>优点：</p>
-<ul>
-<li>具有很强的泛用性，支持几乎所有的图像数据，甚至包括一些非图像数据。</li>
-<li>不受分类数量和形状的限制，不用提前设定类数。</li>
-<li>对于异常点也可以完成分类。</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>必须事先设定窗口的大小，也就是说必须事先规定什么叫做“近”。</li>
-<li>对于高维数据不适用</li>
-</ul>
-<p>算法流程如下：</p>
-<ul>
-<li>首先选定窗口函数和窗口大小</li>
-<li>对于每一个数据点：<ol>
-<li>计算以它为中心的窗口</li>
-<li>计算窗口中数据的均值点</li>
-<li>将窗口移植新的均值点</li>
-</ol>
-</li>
-</ul>
-<h2 id="Hierarchical-Clustering"><a href="#Hierarchical-Clustering" class="headerlink" title="Hierarchical Clustering"></a>Hierarchical Clustering</h2><p>Hierarchical Clustering是一种基于数据距离构建聚类层级结构的技术。它分为“自顶向下”和“自底向上”两大类。其中“自顶向下”指的是一开始将所有的数据认为是同一类，而后在不断的迭代中将数据进行分类，从而构建聚类层级结构。而“自底向上”是完全相反的情况。</p>
-<p>Hierarchical Clustering通过两种函数确定数据间的距离和类间的距离。其中数据间的距离通过距离函数决定，常见的距离函数包括欧几里得距离(Euclidean distance)，曼哈顿距离(Manhattan distance)等， 在处理文本数据时，汉明距离(Hamming distance)也是常用的函数之一。类间距离的判断则通过最大连接(全连接)，最小链接(单链接)，平均链接等方式来确定。其中最大连接是指类间距离等于分属两类的数据点之间最大的距离。最小链接和平均链接可以以此类推。</p>
-
+          <p>聚类是一种无监督学习算法。聚类的本质就是将相似的数据进行分组。主要方法包括：K-means，Mean-shift，Hierarchical cluster，SLICS, QUAD tree等等。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%E8%81%9A%E7%B1%BB/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1030,7 +1011,7 @@
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -1041,6 +1022,12 @@
   
 
 
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 

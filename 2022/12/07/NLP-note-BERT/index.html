@@ -19,29 +19,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"thylaco1eo.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.13.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的模型中去。我发现google官方竟然没有这方面的教程。在网上找了一圈之后终于让程序跑起来了，总结一下方法吧。 教程摘自stackoverflow中的相关问题： 我们需要通过设定一个tf.Varible来存储embedding，然后用tf.placeholder()通过NumPy array来初始化它： 训练完成的word2vec">
+    <meta name="description" content="NLP领域中在BERT之前一直没有一个网络模型可以在一个大的数据集上训练之后解决多种不同的NLP任务。BERT的出现使得人们可以在一个大的数据集上做训练然后应用在很多NLP任务上。 BERT被设计用未标注的数据来训练深度双向表示，这个双向表示结合了左右的上下文信息。BERT模型可以通过仅调整输出层来适应不同的NLP任务。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tensorflow使用Word2vec模型">
-<meta property="og:url" content="https://thylaco1eo.github.io/2016/11/08/Tensorflow%E4%BD%BF%E7%94%A8Word2vec%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:title" content="NLP_note:BERT">
+<meta property="og:url" content="https://thylaco1eo.github.io/2022/12/07/NLP-note-BERT/index.html">
 <meta property="og:site_name" content="thylaco1eo site">
-<meta property="og:description" content="最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的模型中去。我发现google官方竟然没有这方面的教程。在网上找了一圈之后终于让程序跑起来了，总结一下方法吧。 教程摘自stackoverflow中的相关问题： 我们需要通过设定一个tf.Varible来存储embedding，然后用tf.placeholder()通过NumPy array来初始化它： 训练完成的word2vec">
+<meta property="og:description" content="NLP领域中在BERT之前一直没有一个网络模型可以在一个大的数据集上训练之后解决多种不同的NLP任务。BERT的出现使得人们可以在一个大的数据集上做训练然后应用在很多NLP任务上。 BERT被设计用未标注的数据来训练深度双向表示，这个双向表示结合了左右的上下文信息。BERT模型可以通过仅调整输出层来适应不同的NLP任务。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2016-11-08T13:52:16.000Z">
-<meta property="article:modified_time" content="2016-11-08T17:00:02.492Z">
+<meta property="article:published_time" content="2022-12-06T23:56:32.000Z">
+<meta property="article:modified_time" content="2022-12-08T01:10:16.119Z">
 <meta property="article:author" content="thylaco1eo">
-<meta property="article:tag" content="Tensorflow">
-<meta property="article:tag" content="Word2vec">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://thylaco1eo.github.io/2016/11/08/Tensorflow%E4%BD%BF%E7%94%A8Word2vec%E6%A8%A1%E5%9E%8B/">
+<link rel="canonical" href="https://thylaco1eo.github.io/2022/12/07/NLP-note-BERT/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://thylaco1eo.github.io/2016/11/08/Tensorflow%E4%BD%BF%E7%94%A8Word2vec%E6%A8%A1%E5%9E%8B/","path":"2016/11/08/Tensorflow使用Word2vec模型/","title":"Tensorflow使用Word2vec模型"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://thylaco1eo.github.io/2022/12/07/NLP-note-BERT/","path":"2022/12/07/NLP-note-BERT/","title":"NLP_note:BERT"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Tensorflow使用Word2vec模型 | thylaco1eo site</title>
+<title>NLP_note:BERT | thylaco1eo site</title>
   
 
 
@@ -102,7 +100,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -115,6 +113,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E7%BB%86%E8%8A%82"><span class="nav-number">1.1.</span> <span class="nav-text">算法细节</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%85%A5"><span class="nav-number">1.1.1.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Embedding"><span class="nav-number">1.1.2.</span> <span class="nav-text">Embedding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A9%E7%A0%81%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.1.3.</span> <span class="nav-text">掩码模型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -182,7 +181,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://thylaco1eo.github.io/2016/11/08/Tensorflow%E4%BD%BF%E7%94%A8Word2vec%E6%A8%A1%E5%9E%8B/">
+    <link itemprop="mainEntityOfPage" href="https://thylaco1eo.github.io/2022/12/07/NLP-note-BERT/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -195,12 +194,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Tensorflow使用Word2vec模型 | thylaco1eo site">
+      <meta itemprop="name" content="NLP_note:BERT | thylaco1eo site">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Tensorflow使用Word2vec模型
+          NLP_note:BERT
         </h1>
 
         <div class="post-meta-container">
@@ -210,18 +209,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2016-11-08 14:52:16 / 修改时间：18:00:02" itemprop="dateCreated datePublished" datetime="2016-11-08T14:52:16+01:00">2016-11-08</time>
+      <time title="创建时间：2022-12-07 00:56:32" itemprop="dateCreated datePublished" datetime="2022-12-07T00:56:32+01:00">2022-12-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
+        <i class="far fa-calendar-check"></i>
       </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a>
-        </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-12-08 02:10:16" itemprop="dateModified" datetime="2022-12-08T02:10:16+01:00">2022-12-08</time>
     </span>
 
   
@@ -234,21 +230,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>最近公司公司大大给了我一份训练完的word2vec模型，让我加到我们的模型中去。我发现google官方竟然没有这方面的教程。在网上找了一圈之后终于让程序跑起来了，总结一下方法吧。</p>
-<p>教程摘自<a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/35687678/using-a-pre-trained-word-embedding-word2vec-or-glove-in-tensorflow">stackoverflow中的相关问题</a>：</p>
-<p>我们需要通过设定一个<code>tf.Varible</code>来存储embedding，然后用<code>tf.placeholder()</code>通过NumPy array来初始化它：</p>
-<p>训练完成的word2vec都会有一个保存词向量文件，这里假定文件名为“a.bin”。   </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">W = tf.Variable(tf.constant(0.0, shape=[vocab_size, embedding_dim]),trainable=False, name=&quot;W&quot;)</span><br><span class="line">embedding_placeholder = tf.placeholder(tf.float32, [vocab_size, embedding_dim])  </span><br><span class="line">embedding_init = W.assign(embedding_placeholder)</span><br></pre></td></tr></table></figure>
-
-<p>先做一个placeholder来给embedding占位，然后通过embedding_init来初始化embedding。</p>
+        <p>NLP领域中在BERT之前一直没有一个网络模型可以在一个大的数据集上训练之后解决多种不同的NLP任务。BERT的出现使得人们可以在一个大的数据集上做训练然后应用在很多NLP任务上。</p>
+<p>BERT被设计用未标注的数据来训练深度双向表示，这个双向表示结合了左右的上下文信息。BERT模型可以通过仅调整输出层来适应不同的NLP任务。</p>
 <span id="more"></span>
-<p>之后就可以读入训练好的word2vec模型，像这样：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">f = open(&#x27;a.bin&#x27;,&#x27;r&#x27;).readlines()</span><br><span class="line">&#x27;&#x27;&#x27;</span><br><span class="line">读入处理数据</span><br><span class="line">&#x27;&#x27;&#x27;</span><br><span class="line">embedding = np.array(f)  </span><br></pre></td></tr></table></figure>
-<p>之后再在Session中执行：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sess.run(embedding_init, feed_dict=&#123;embedding_placeholder: embedding&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>需要补充的是，当你的网络构建和训练不在同一个文件中的时候，比如说<a target="_blank" rel="noopener" href="https://github.com/dennybritz/cnn-text-classification-tf">cnn-text-classification-tf</a>中的text_cnn.py和train.py这样的情况时，embedding_init是作为网络对象的参数出现的，所以要改为”对象名.embedding_init”。然后第一段代码放在网络的构建文件中，读入数据放在训练文件开tf.Graph之前。这样就可以在Tensorflow中使用训练好的Word2vec模型了。</p>
-<p><em><strong>有任何的意见或建议欢迎留言</strong></em></p>
+<h1 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h1><p>BERT使用了一个带掩码的语言模型，这个语言模型会随机将输入的一部分字符码掉。目标函数预测被码掉部分原始的字符。这样一个带掩码的语言模型允许语言模型去获取掩码左右的信息。</p>
+<h2 id="算法细节"><a href="#算法细节" class="headerlink" title="算法细节"></a>算法细节</h2><p>BERT框架包含两个步骤。第一步是Pre-train(预训练)，在这一步中模型用未标注的数据进行训练，第二步是fine-tune(微调)，在这一步中，初始化参数来自于Pre-train的结果，模型使用标注的数据针对特定数据进行微调。在这两个步骤中会分别训练两个架构大致相同的BERT模型。</p>
+<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>对于BERT模型，他的输入是一个序列，这个序列由两个句子组成。序列的起始由”CLS”标记，两个句子由”SEP”分隔。</p>
+<h3 id="Embedding"><a href="#Embedding" class="headerlink" title="Embedding"></a>Embedding</h3><p>对于输入的每一个token，BERT会在第一层给出它的embedding表示，这个embedding由三个部分组成<br>$$ Emb(token) &#x3D; Emb_{token}+Emb_{segment}+Emb_{position}$$<br>其中$Emb_{segment}$表示这个token是在第一个句子还是第二个句子中，$Emb_{position}$表示token在整个输入序列中的位置。</p>
+<h3 id="掩码模型"><a href="#掩码模型" class="headerlink" title="掩码模型"></a>掩码模型</h3><p>在预训练阶段，BERT模型随机选取15%的token做掩码，用来训练双向语言表示。</p>
+<p>对于预训练和微调来说，在输入端最大的区别在于掩码。在设计中，与训练阶段有掩码的存在，而微调是没有。为了弥合这种差别，作者提出，在预训练中当某个token被选中时，它有80%的几率被替换为特殊的掩码符号([MASK])，有10%的几率被替换为另一个随机的token，另有10%的几率不做改动。在计算损失时是所有mask的token都参与计算。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>在BERT之前预训练的语言表示模型大概可以分为两类，基于特征的，例如ELMo，和基于微调的，例如GPT。这两类模型在与训练的过程中都使用了同样的目标函数和单向的语言模型。相较于一般的Encoder-Decoder模型，BERT的self-attention机制使得BERT可以看到前后两个句子的信息，而一般情况下编码器是看不到解码器的信息的。这使得这个模型可以处理多种NLP任务。与之相对的，BERT无法做机器翻译，文章摘要等文本生成类的任务。</p>
 
     </div>
 
@@ -257,23 +248,16 @@
     
 
     <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Tensorflow/" rel="tag"># Tensorflow</a>
-              <a href="/tags/Word2vec/" rel="tag"># Word2vec</a>
-          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2016/09/12/Tensorflow%E7%AC%94%E8%AE%B0%EF%BC%9A%E4%B8%AD%E6%96%87%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" rel="prev" title="Tensorflow笔记：中文数据处理">
-                  <i class="fa fa-chevron-left"></i> Tensorflow笔记：中文数据处理
+                <a href="/2021/10/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%E8%81%9A%E7%B1%BB/" rel="prev" title="机器学习笔记：Clustering">
+                  <i class="fa fa-chevron-left"></i> 机器学习笔记：Clustering
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2017/01/14/%E6%88%91%E7%9A%84%E4%B8%80%E5%B9%B4%E6%95%99%E7%BB%83%E6%80%BB%E7%BB%93/" rel="next" title="我的一年教练总结">
-                  我的一年教练总结 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -323,7 +307,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
